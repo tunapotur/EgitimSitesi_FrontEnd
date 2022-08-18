@@ -1,0 +1,10 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.guides.bracketPairs": true,
+  "editor.guides.bracketPairsHorizontal": false,
+  "files.autoSave": "onFocusChange",
+  "editor.tabSize": 2,
+  "workbench.colorTheme": "One Monokai",
+  "workbench.iconTheme": "material-icon-theme"
+}

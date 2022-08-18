@@ -1,0 +1,9 @@
+devDependencies
+npm i -D pug-html-loader  => deprecated
+npm i -D pug-loader       => deprecated
+    
+dependencies
+npm i @babel/polyfill     => deprecated OK
+
+npm cache verify
+npm cache clean --force
