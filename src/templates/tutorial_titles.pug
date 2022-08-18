@@ -1,0 +1,165 @@
+extends base/base.pug
+include mixin/mixin_sortCheck.pug
+include mixin/mixin_meter.pug
+
+mixin grTable__row-file(row, label, tooltip)
+    .grTable__row
+        .grTable__cell.grTable__image
+            a.thumbnail(target="_blank", href=`${row.image}`)
+                img.thumbnail__image(src=`${row.image}`, alt=`${row.title}`)
+
+        .grTable__cell.grTable__select
+            .checkbox2(data-tippy-content=`${tooltip.select}`)
+                input.checkbox2__input(type="checkbox" id=`select${row.id}`)
+                label.checkbox2__label(for=`select${row.id}`)
+                    span.checkbox2__icon
+                        svg.checkbox2__svg
+                            use(xlink:href="img/svg/icons.svg#check")
+
+        .grTable__cell.grTable__edit
+            .btn-icon(data-tippy-content=`${tooltip.edit}`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/icons.svg#pencil2")
+        
+        .grTable__cell.grTable__save-close-edit(style="display:none;")
+            .btn-icon(data-tippy-content=`${tooltip.saveCloseEdit}`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/icons.svg#floppy-o")
+
+        .grTable__cell.grTable__delete
+            .btn-icon(data-tippy-content=`${tooltip.delete}`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/icons.svg#trash-o")
+
+        .grTable__cell.grTable__id(data-th=`${label.id}`)= row.id
+
+        .grTable__cell.grTable__title(data-th=`${label.title}`)
+            a.grTable__link(href=`${row.image}`)= row.title
+            //- textarea.grTable__title-edit(name='search')=`${row.title}`
+
+        .grTable__cell.grTable__type(data-th=`${label.type}`)= row.type
+
+        .grTable__cell.grTable__size(data-th=`${label.size}`)= row.size
+
+        .grTable__cell.grTable__created(data-th=`${label.created}`)= row.created
+        .grTable__cell.grTable__updated(data-th=`${label.updated}`)= row.updated
+
+block main
+    .rsTable-wrapper
+        .table-header.table-header__tutorial-titles
+            // * save changes
+            .save-changes.btn-icon(data-tippy-content=`Değişiklikleri Kaydetmek İçin Tıklayın`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/icons.svg#floppy-o")
+
+            //* Table Text
+            a.table-header__header-text(href=`${contentFiles.tableHeader.text.link}`)
+                h1.table-header__header= 'Python'+ ' ' + 'Ders Başlıkları Tablosu'
+                p.table-header__text= 'Ders başlıkları tablosu üzerinde yapılan değişiklikleri solda bulunan butona tıklayarak kaydediniz.'
+
+            //* Card - Table Icon
+            .table-card-transition(data-tippy-content=`${contentFiles.tableHeader.tableCardTransition_tooltip}`)
+                svg.table-card-transition__table
+                    use(xlink:href="img/svg/icons.svg#table")
+                svg.table-card-transition__cards.table-card-transition--icon-hide
+                    use(xlink:href="img/svg/icons.svg#th-large")
+            
+            //* Content Files            
+            a.content-files.btn-icon(href=`\contentFiles.html`, data-tippy-content=`İçerik Dosyaları Sayfası`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/icons.svg#copy")
+
+            //* Edit Content Header
+            a.edit-content-header.btn-icon(href=`${contentFiles.tableHeader.editContentHeader_link}`, data-tippy-content=`${contentFiles.tableHeader.editContentHeader_tooltip}`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/icons.svg#pencil2")
+
+            //* Sub Menu
+            .table-header__open-sub-menu.btn-icon.btn-icon--rotate-180(data-tippy-content=`${contentFiles.tableHeader.subMenuIcon_tooltip}`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/icons.svg#angle-double-up")
+
+            //* Search
+            .table-content-search(data-tippy-content=`${contentFiles.tableHeader.searchIcon_tooltip}`)
+                .table-content-search__icons
+                    svg.table-content-search__icon
+                        use(xlink:href="img/svg/bootstrap-icons.svg#search")
+                    svg.table-content-search__icon.table-content-search__icon--hide
+                        use(xlink:href="img/svg/icons.svg#close")
+                form.table-content-search__form(action="" autocomplete="on")
+                    input.table-content-search__input(type='text' name='search'  placeholder=`${contentFiles.tableHeader.searchInput}`)
+
+        .table-query
+            form.frmGroup.table-query__tutorial-title
+                h2.frmGroup__header Başlık
+
+                .table-query__open-close-text.frmGroup__header-inner Başlıkları Aç
+                .table-query__open-close-button.btn-icon(data-tippy-content=`Tüm Başlıkları Açmak İçin Tıklayın`)
+                    svg.btn-icon__icon
+                        use(xlink:href="img/svg/icons.svg#enlarge2")
+
+                .table-query__open-close-text.frmGroup__header-inner Başlıkları Kapat
+                .table-query__open-close-button.btn-icon(data-tippy-content=`Tüm Başlıkları Kapatmak İçin Tıklayın`)
+                    svg.btn-icon__icon
+                        use(xlink:href="img/svg/icons.svg#shrink2")
+
+                .table-query__create-title
+                    input.frmGroup__input.create-title__input(type="text" placeholder=`Başlık` value=`` maxlength='32')
+                    button.frmGroup__button.frmGroup__button--height-input.create-title__button Oluştur
+
+            form.frmGroup.table-query__tutorial-title
+                h2.frmGroup__header Alt Başlık
+
+                .sub-title.sub-title--id
+                    .sub-title__header İd
+                    .sub-title__data(data-tippy-content='3579') 3579
+
+                .sub-title.sub-title--title
+                    .sub-title__header Başlık
+                    .sub-title__data Python Hakkında
+
+                .table-query__create-title
+                    input.frmGroup__input.create-title__input(type="text" placeholder=`Alt Başlık` value=`` maxlength='32')
+                    button.frmGroup__button.frmGroup__button--height-input.create-title__button Oluştur
+
+        //- TODO: altaki satırı unutma
+        //- .grTable.grTable--card
+        .grTable.grTable--sub-table
+            .grTable__row.grTable__row--head
+                .grTable__cell
+                    span.grTable__multi-text Alt Başlık,
+                    span.grTable__multi-text İçerik
+                    span.grTable__multi-text Sayfası
+                .grTable__cell= table.header.edit
+                .grTable__cell Taşı, Sil 
+                .grTable__cell= table.header.id
+                .grTable__cell= table.header.title
+                .grTable__cell= table.header.type
+                .grTable__cell= table.header.created
+                .grTable__cell= table.header.updated
+        
+            .grTable__row
+                .grTable__cell.grTable__open-sup-table
+                    .btn-icon(data-tippy-content=`Alt Başlıkları Aç`)
+                        svg.btn-icon__icon
+                            use(xlink:href="img/svg/icons.svg#folder-o")
+
+                .grTable__cell.grTable__edit
+                    .btn-icon(data-tippy-content=`Düzenleme`)
+                        svg.btn-icon__icon
+                            use(xlink:href="img/svg/icons.svg#pencil2")
+                
+                .grTable__cell.grTable__row-operations
+                    .btn-icon(data-tippy-content=`Satır taşıma, silme`)
+                        svg.btn-icon__icon
+                            use(xlink:href="img/svg/icons.svg#tree-dots")
+
+                .grTable__cell.grTable__id(data-th=`Başlık İd`) 12233
+
+                .grTable__cell.grTable__title(data-th=`Başlık`)
+                    a.grTable__link(href=`/index.html`) Python
+
+                .grTable__cell.grTable__type(data-th=`Tip`) Yayında
+
+                .grTable__cell.grTable__created(data-th=`Oluşturulma Tarihi`) 05.03.2021
+                .grTable__cell.grTable__updated(data-th=`Güncelleme Tarihi`) 10.03.2021

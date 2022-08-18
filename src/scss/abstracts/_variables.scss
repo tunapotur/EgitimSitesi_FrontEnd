@@ -1,0 +1,113 @@
+// MEDIA QUERY MANAGER
+/*
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800] is where our normal styles apply
+1800px + :      Big desktop
+
+$breakpoint arguement choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+ORDER: Base + typography > general layout + grid > page layout > components
+
+1em = 16px
+
+$bp-phone-fold:   18.75em;   // 300px
+$bp-phone:        37.5em;    // 600px
+$bp-tab-port:     56.25em;   // 900px
+$bp-tab-land:     75em;      // 1200px
+$bp-big-desktop:  112.5em;   // 1800px
+*/
+
+// RESPONSIVE BREAKPOINTS
+$bp-phone-fold: 18.75em;
+$bp-phone: 37.5em;
+$bp-tab-port: 56.25em;
+$bp-tab-land: 75em;
+$bp-big-desktop: 112.5em;
+
+// sidebar
+$sidebar-width: 30rem;
+
+// navbar
+$navbar-height: 6rem;
+$navbar-responsive_width: 65vw;
+$navbar-responsive_button_size: $navbar-height - 2rem;
+$navbar-user_btn_height: $navbar-height - 1rem;
+$navbar-user-btn_height_responsive: $navbar-height;
+
+// xCard
+$xCard-width: 21rem;
+$xCard-width-tab-port: 16rem;
+$xCard-width-phone: 11rem;
+
+// $xCard-margin-left: 0.5rem;
+// $xCard-margin-right: 0.5rem;
+$xCard-margin-left: 0.25rem;
+$xCard-margin-right: 0.25rem;
+
+$xCard-total-width: $xCard-width + $xCard-margin-left + $xCard-margin-right;
+$xCard-total-width-tab-port: $xCard-width-tab-port + $xCard-margin-left + $xCard-margin-right;
+$xCard-total-width-phone: $xCard-width-phone + $xCard-margin-left + $xCard-margin-right;
+
+// aCard
+$aCard-width: 25rem;
+$aCard-margin-left: 0.5rem;
+$aCard-margin-right: 0.5rem;
+$aCard-total-width: $aCard-width + $aCard-margin-left + $aCard-margin-right;
+
+// nCard
+$nCard-content-width: 40rem;
+$nCard-content-width-phone: 20rem;
+
+$nCard-content-height-phone: 12rem;
+
+$nCard-img-width: 18rem;
+$nCard-img-height: 15rem;
+
+$nCard-img-width-phone: 12rem;
+$nCard-img-height-phone: 10rem;
+
+// user-operations
+$user-operations-width: 45rem;
+$user-operations-width-phone: 95vw;
+$user-operations-element-width: 40rem;
+$user-operations-element-width-phone: 90vw;
+$user-operations-border-radius: 1rem;
+
+// user-config
+$user-config-wrapper: 45rem;
+$user-config-wrapper-phone: 95vw;
+
+// xForms
+$xForms-border-radius: 1rem;
+$xCheckbox-border-radius: 0.5rem;
+
+// Forms
+// $frmGroup-config-wrapper: 45rem;
+$frmGroup-config-wrapper: 40rem;
+$frmGroup-config-wrapper-phone: 95vw;
+$frmGroup-border-radius: 1rem;
+$frmGroup-checkbox-border-radius: 0.5rem;
+
+// Table
+$grTable-border-color: var(--black-100);
+$table-icon-size: 3rem;
+
+// footer
+$footer-height: 5rem;
+
+// FONT VARIABLES
+$font-roboto: 'Roboto', sans-serif;
+$font-open-sans: 'Open Sans', sans-serif;
+
+$bs-font-sans-serif: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+$bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+$font-primary: $font-roboto;
+$default-font-size: 1.6rem;

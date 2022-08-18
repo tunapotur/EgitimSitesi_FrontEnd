@@ -1,0 +1,19 @@
+.frmGroup-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 60vh;
+
+  @include vertical-gaps-between-elements(5.5rem);
+  @include form-width;
+
+  & > * {
+    scroll-margin-top: $navbar-height * 1.5;
+
+    @include respond(phone) {
+      scroll-margin-top: $navbar-height + 2rem;
+    }
+  }
+}

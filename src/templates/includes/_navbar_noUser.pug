@@ -1,0 +1,61 @@
+include ../mixin/mixin_brand.pug
+include ../mixin/mixin_user_link.pug
+
+.overlay-navbar.u-z-index-90(id="overlayNavbar")
+nav.navbar-wrapper.u-z-index-110(id="navbarWrapper")
+    .navbar-responsive
+        .navbar-responsive__button(id="responsiveNavbarOpen")
+            .navbar-responsive__icons
+                svg.navbar-responsive__icon
+                    use(xlink:href='img/svg/icons.svg#bars')
+                svg.navbar-responsive__icon.navbar-responsive__icon--hide
+                    use(xlink:href='img/svg/icons.svg#close')
+
+        +brand('brand-navbar-responsive')
+
+        .navbar-responsive__button(id="responsiveNavbarSearch")
+            .navbar-responsive__icons
+                svg.navbar-responsive__icon
+                    use(xlink:href='img/svg/icons.svg#search')
+                svg.navbar-responsive__icon.navbar-responsive__icon--hide
+                    use(xlink:href='img/svg/icons.svg#close')
+            form.navbar-responsive__search(action="" autocomplete="on")
+                input(type='text' name='search'  placeholder=`${navbar.searchPlaceholder}`)
+
+    .navbar(id="navbar")
+        +brand('brand-navbar-top')
+
+        form.main-search(action="" autocomplete="on")
+            input.main-search__input(type='text', name='search',placeholder=`${navbar.searchPlaceholder}`)
+            svg.main-search__icon(id="main-search-icon")
+                use(xlink:href="img/svg/bootstrap-icons.svg#search")
+
+        ul.nav-links
+            each val in navbar.links
+                li
+                    if val.disabled
+                        a.nav-link.nav-link--disabled(href=`${val.link}`)
+                            span.nav-link__text= val.text
+                    else
+                        a.nav-link(href=`${val.link}`)
+                            span.nav-link__text= val.text
+
+        .nav-icons
+            div(id='fullScreen')
+                svg.nav-icons__icon
+                    use(xlink:href="img/svg/bootstrap-icons.svg#fullscreen")
+                svg.nav-icons__icon.nav-icons__icon--none
+                    use(xlink:href="img/svg/bootstrap-icons.svg#fullscreen-exit")
+            div(id='fixNavbar')
+                svg.nav-icons__icon
+                    use(xlink:href="img/svg/icons.svg#pin")
+                svg.nav-icons__icon
+                    use(xlink:href="img/svg/icons.svg#unpin")
+            div(id="darkLight")
+                svg.nav-icons__icon
+                    use(xlink:href="img/svg/bootstrap-icons.svg#square-half")
+
+        .no-user
+            a.no-user__btn(href=`/login_signup.html`)
+                .no-user__text= navbar.noUser.loginBtn
+                .no-user__text= navbar.noUser.signUpBtn

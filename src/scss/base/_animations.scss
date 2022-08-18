@@ -1,0 +1,119 @@
+// Light Dark Theme gecisi icin gerekli animasyon
+html.transition,
+html.transition *,
+html.transition *::before,
+html.transition *::after {
+  transition: all 500ms !important;
+  transition-delay: 0 !important;
+}
+
+@keyframes move_up {
+  from {
+    transform: translateY(4rem);
+  }
+  to {
+    transform: translateY(-4rem);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+// https://l-lin.github.io/font-awesome-animation/
+// https://raw.githubusercontent.com/l-lin/font-awesome-animation/master/dist/font-awesome-animation.css
+@keyframes horizontal-shake {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  6% {
+    transform: translate(0.5rem, 0);
+  }
+
+  12% {
+    transform: translate(0, 0);
+  }
+
+  18% {
+    transform: translate(0.5rem, 0);
+  }
+
+  24% {
+    transform: translate(0, 0);
+  }
+
+  30% {
+    transform: translate(0.5rem, 0);
+  }
+
+  36%,
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes growDown {
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes rotateX {
+  0% {
+    opacity: 0;
+    transform: rotateX(-90deg);
+  }
+  50% {
+    transform: rotateX(-20deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes scaleZ {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  80% {
+    transform: scale(1.07);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

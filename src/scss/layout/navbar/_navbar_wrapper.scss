@@ -1,0 +1,42 @@
+.navbar-wrapper {
+  box-shadow: var(--bs-sm);
+
+  position: static;
+
+  &--absolute {
+    position: absolute;
+  }
+
+  &--fixed {
+    position: fixed;
+  }
+
+  &--fixed,
+  &--absolute {
+    /*Eger navbar fixed olursa
+        navbar'dan hemen sonra gelen
+        main-wrapper margin degeri 
+        navbar heigt hesaba katilarak 
+        hesaplaniyor
+      */
+    & + .main-wrapper {
+      margin-top: $navbar-height * 1.5;
+
+      @include respond(phone) {
+        margin-top: $navbar-height + 1rem;
+      }
+    }
+  }
+}
+
+// navbar sabitlendiğinde ikinci ikona geçis sağlanıyor
+.navbar-wrapper--fixed {
+  #fixNavbar {
+    & > :first-child {
+      display: none;
+    }
+    & > :last-child {
+      display: block;
+    }
+  }
+}

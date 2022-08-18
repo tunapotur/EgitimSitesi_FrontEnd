@@ -1,0 +1,32 @@
+@mixin light_colors {
+  @include generate_colors($colors-light);
+  @include generate_colors_fixed($colors-light);
+
+  --fc-dark: var(--black-900);
+  --fc-medium: var(--black-700);
+  --fc-light: var(--black-500);
+
+  //  RINGS
+  --focus-ring: rgba(var(--RGB_blue-500), 0.15);
+  --focus-ring-success: rgba(var(--RGB_green-200), 0.4);
+  --focus-ring-warning: rgba(var(--RGB_yellow-400), 0.4);
+  --focus-ring-error: rgba(var(--RGB_red-600), 0.15);
+  --focus-ring-muted: rgba(var(--RGB_black-800), 0.1);
+
+  //  SHADOWS
+  --bs-sm: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
+  --bs-md: 0 1px 3px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.06), 0 3px 8px rgba(0, 0, 0, 0.09);
+  --bs-lg: 0 1px 4px rgba(0, 0, 0, 0.09), 0 3px 8px rgba(0, 0, 0, 0.09), 0 4px 13px rgba(0, 0, 0, 0.13);
+
+  //  SCROLLBARS
+  --scrollbar: rgba(0, 0, 0, 0.2);
+
+  // https://www.heropatterns.com/
+  //--black-500:#6a737c
+  --background-pattern-diagonalLines: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%236a737c' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+
+  //--black-500:#6a737c
+  --sidebar-search-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctitle%3E search%3C/title%3E%3Cpath d='M31 27.2l-7.6-6.4c-0.8-0.7-1.6-1-2.3-1 1.8-2.1 2.9-4.8 2.9-7.8 0-6.6-5.4-12-12-12s-12 5.4-12 12 5.4 12 12 12c3 0 5.7-1.1 7.8-2.9 0 0.7 0.3 1.5 1 2.3l6.4 7.6c1.1 1.2 2.9 1.3 4 0.2s1-2.9-0.2-4zM12 20c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z' fill='%236a737c'/%3E%3C/svg%3E");
+
+  --topLight-to-bottomDark-deg: 180deg;
+}

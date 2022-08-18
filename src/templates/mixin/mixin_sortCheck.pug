@@ -1,0 +1,15 @@
+mixin sortCheck(checkId, checkName, switchId )
+    .checkbox.checkbox--line-header.order__left
+        input.checkbox__input(type="checkbox" id=`${checkId}`)
+        label.checkbox__label(for=`${checkId}`)
+            span.checkbox__icon
+                svg.checkbox__svg
+                    use(xlink:href="img/svg/icons.svg#check")
+            span.checkbox__text= checkName
+
+    .switch.order__right
+        input.switch__input(type="checkbox", id=`${switchId}`)
+        label.switch__label(for=`${switchId}`)
+            span.switch__circle
+            span.switch__letter.switch__letter--first A
+            span.switch__letter.switch__letter--last Z

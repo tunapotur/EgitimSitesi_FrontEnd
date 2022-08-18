@@ -1,0 +1,38 @@
+.btn-icon {
+  &__icon {
+    @include svg_color(var(--black-600));
+    @include box(3rem);
+    @include svg_block;
+    @include noselect;
+
+    @include respond(phone) {
+      @include box(4rem);
+    }
+
+    background-color: transparent;
+
+    cursor: pointer;
+
+    transform: scale(1) rotate(0deg);
+
+    &:hover {
+      transform: scale(1.1) rotate(0deg);
+    }
+
+    &:active {
+      transform: scale(1) rotate(0deg);
+    }
+
+    &--rotate-180 {
+      transform: scale(1) rotate(180deg);
+
+      &:hover {
+        transform: scale(1.1) rotate(180deg);
+      }
+
+      &:active {
+        transform: scale(1) rotate(180deg);
+      }
+    }
+  }
+}

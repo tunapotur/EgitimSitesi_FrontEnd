@@ -1,0 +1,61 @@
+.scroll-top-btn {
+  &,
+  &:link,
+  &:visited {
+    display: none;
+    // display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    // opacity: 0.4;
+
+    bottom: calc(#{$footer-height} + 2rem);
+    right: 3rem;
+
+    @include box(5rem);
+
+    text-align: center;
+    cursor: pointer;
+
+    background-color: var(--black-075);
+    border-radius: 0.5rem;
+
+    transition: all 0.2s;
+    overflow: hidden;
+    //Change for the <button> element
+    border: none;
+  }
+
+  &--fixed {
+    position: fixed;
+  }
+
+  &--absolute {
+    position: absolute;
+    bottom: 3rem;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    opacity: 1 !important;
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+    transform: translateY(-1px);
+  }
+
+  &__icon {
+    @include box(2.5rem);
+    @include svg_color(var(--black-800));
+    @include svg_block;
+
+    filter: drop-shadow(1px 2px 2px rgba(var(--RGB_color-black), 0.5));
+  }
+
+  &:hover &__icon {
+    animation: move_up 0.8s linear infinite;
+  }
+}

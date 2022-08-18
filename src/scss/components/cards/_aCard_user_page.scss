@@ -1,0 +1,39 @@
+.aCards-user-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    &__list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+  
+      width: $aCard-total-width * 4;
+  
+      @include respond(tab-land) {
+        width: $aCard-total-width * 3;
+      }
+  
+      @include respond(tab-port) {
+        width: $aCard-total-width * 2;
+      }
+  
+      @include respond(phone) {
+        width: $aCard-total-width;
+      }
+  
+      li {
+        margin-bottom: 2rem;
+      }
+    }
+  
+    &__header {
+      font-weight: 600;
+      font-size: 4rem;
+      text-shadow: var(--bs-md);
+      color: var(--orange-700);
+    }
+  }
+  

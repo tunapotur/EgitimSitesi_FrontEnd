@@ -1,0 +1,13 @@
+mixin user_link(text, link, disabled=false)
+    if disabled
+        li
+            a.user-menu__link.user-menu__link--disabled(href=`${link}`)
+                span.user-menu__link-text= text
+                if block
+                    block
+    else
+        li
+            a.user-menu__link(href=`${link}`)
+                span.user-menu__link-text= text
+                if block
+                    block

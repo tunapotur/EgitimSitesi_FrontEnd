@@ -1,0 +1,118 @@
+.nCard {
+  display: flex;
+  align-items: flex-start;
+
+  background-color: var(--black-025);
+
+  box-shadow: var(--bs-md);
+
+  border-radius: 0.5rem;
+
+  position: static;
+  @include respond(phone) {
+    position: relative;
+  }
+
+  transition: transform 0.2s;
+  &:hover {
+    transform: translateY(-2.5%);
+  }
+
+  &:active {
+    transform: translateY(0%);
+  }
+
+  &__img {
+    display: block;
+
+    object-fit: cover;
+
+    width: $nCard-img-width;
+    height: $nCard-img-height;
+
+    border-radius: 0.5rem 1px 1px 0.5rem;
+
+    @include respond(phone) {
+      width: $nCard-img-width-phone;
+      height: $nCard-img-height-phone;
+
+      border-radius: 0.5rem 1px 1px 1px;
+    }
+  }
+
+  &__content {
+    width: $nCard-content-width;
+
+    @include respond(phone) {
+      width: $nCard-content-width-phone;
+      height: $nCard-content-height-phone;
+    }
+
+    margin-left: 1rem;
+    margin-right: 1rem;
+    
+    position: relative;
+    @include respond(phone) {
+      position: static;
+    }
+  }
+
+  &__date {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    @include respond(phone) {
+      top: auto;
+      right: auto;
+
+      bottom: 0;
+      left: 2px;
+    }
+
+    color: var(--black-500);
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  &__header {
+    color: var(--powder-700);
+    font-weight: 700;
+    text-align: left;
+    font-size: 2rem;
+    line-height: 1.2;
+
+    @include width-text-ellipsis($nCard-content-width * 0.8);
+
+    @include respond(phone) {
+      @include max-lines(2, 1.1, 1.6, vertical);
+    }
+  }
+
+  &__user-name {
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.1;
+
+    @include width-text-ellipsis($nCard-content-width * 0.6);
+
+    padding-left: 0.2rem;
+    margin-top: 2px;
+    margin-bottom: 1.2rem;
+
+    @include respond(phone) {
+      @include width-text-ellipsis($nCard-content-width-phone * 0.75);
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__text {
+    @include max-lines(5, 1.3, 1.6);
+
+    @include respond(phone) {
+      @include max-lines(4, 1.2, 1.4);
+    }
+  }
+}

@@ -1,0 +1,15 @@
+extends base/base.pug
+
+block main
+    .aCards-user-page
+        h1.aCards-user-page__header= authors.header.text
+        ul.aCards-user-page__list
+            each card in authors.cards
+                li
+                    a.aCard(href=`${card.link}`)
+                        .aCard__image-wrapper
+                            img.aCard__image-top(src=`${card.imgTop}` alt='User Background')
+                            img.aCard__profile-image(src=`${card.imgProfile}` alt='User Photo')
+                        h1.aCard__fullname= card.fullname
+                        p.aCard__job= card.job
+                        p.aCard__about-me= card.aboutMe

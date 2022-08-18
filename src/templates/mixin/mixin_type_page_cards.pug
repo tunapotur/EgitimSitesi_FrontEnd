@@ -1,0 +1,17 @@
+mixin type_page_cards(cards, n)
+    .xCards-type-page
+        h1.xCards-type-page__header= cards[n].header.text
+        a.xCards-type-page__icon-link(href=`${cards[n].header.link}`)
+            svg.xCards-type-page__icon
+                use(xlink:href='img/svg/icons.svg#th-list')
+        ul.xCards-type-page__list
+            each card in cards[n].cards
+                li
+                    a.xCard(href=`${card.link}`)
+                        .xCard__header-wrapper
+                            img.xCard__img(src=`${card.imgLink}` ald=`${card.imgAlt}`)
+                            .xCard__header-overlay.stripped
+                            .xCard__header-user-name
+                                h1.xCard__header= card.header
+                                p.xCard__user-name= card.userName
+                        p.xCard__text= card.text

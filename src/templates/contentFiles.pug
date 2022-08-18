@@ -1,0 +1,198 @@
+extends base/base.pug
+include mixin/mixin_sortCheck.pug
+include mixin/mixin_meter.pug
+
+mixin grTable__row-file(row, label, tooltip)
+    .grTable__row
+        .grTable__cell.grTable__image
+            a.thumbnail(target="_blank", href=`${row.image}`)
+                img.thumbnail__image(src=`${row.image}`, alt=`${row.title}`)
+
+        .grTable__cell.grTable__select
+            .checkbox2(data-tippy-content=`${tooltip.select}`)
+                input.checkbox2__input(type="checkbox" id=`select${row.id}`)
+                label.checkbox2__label(for=`select${row.id}`)
+                    span.checkbox2__icon
+                        svg.checkbox2__svg
+                            use(xlink:href="img/svg/icons.svg#check")
+
+        .grTable__cell.grTable__edit
+            .btn-icon(data-tippy-content=`${tooltip.edit}`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/icons.svg#pencil2")
+        
+        .grTable__cell.grTable__save-close-edit(style="display:none;")
+            .btn-icon(data-tippy-content=`${tooltip.saveCloseEdit}`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/icons.svg#floppy-o")
+
+        .grTable__cell.grTable__delete
+            .btn-icon(data-tippy-content=`${tooltip.delete}`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/icons.svg#trash-o")
+
+        .grTable__cell.grTable__id(data-th=`${label.id}`)= row.id
+
+        .grTable__cell.grTable__title(data-th=`${label.title}`)
+            a.grTable__link(href=`${row.image}`)= row.title
+            //- textarea.grTable__title-edit(name='search')=`${row.title}`
+
+        .grTable__cell.grTable__type(data-th=`${label.type}`)= row.type
+
+        .grTable__cell.grTable__size(data-th=`${label.size}`)= row.size
+
+        .grTable__cell.grTable__created(data-th=`${label.created}`)= row.created
+        .grTable__cell.grTable__updated(data-th=`${label.updated}`)= row.updated
+
+block main
+    .rsTable-wrapper
+        .table-header.table-header__content-files
+            // * select File Type
+            form.table-header__files-upload(data-tippy-content=`${contentFiles.tableHeader.newFile.tooltip.radio}` action='#' id='frmNewFilesType')
+                .frmGroup__select-wrapper.table-header__file-type
+                    svg.frmGroup__select-arrow
+                        use(xlink:href='img/svg/icons.svg#angle-down')
+                    select.frmGroup__select
+                        option.frmGroup__select-option(value="image" , selected)= contentFiles.tableHeader.newFile.radio.image
+                        option.frmGroup__select-option(value="file")= contentFiles.tableHeader.newFile.radio.file
+                        option.frmGroup__select-option(value="video")= contentFiles.tableHeader.newFile.radio.video
+
+                label.content-file-upload(for="btnUploadContentFiles" data-tippy-content=`${contentFiles.tableHeader.newFile.tooltip.button}`)
+                    input.content-file-upload__input(id="btnUploadContentFiles" type="file" name="fileUpload")
+                    .btn-icon
+                        svg.btn-icon__icon
+                            use(xlink:href="img/svg/icons.svg#upload")
+
+            //* Table Text
+            a.table-header__header-text(href=`${contentFiles.tableHeader.text.link}`)
+                h1.table-header__header= contentFiles.tableHeader.text.content+ ' ' + contentFiles.tableHeader.text.header
+                p.table-header__text= contentFiles.tableHeader.text.text
+            
+            //* Data usage meter
+            .table-header__data-usage-meter
+                .table-header__data-usage
+                    span.table-header__data-left 29
+                    span.table-header__data-total 50
+                    span.table-header__data-size mb
+                +meter(42.39)
+
+            //* Card - Table Icon
+            .table-card-transition(data-tippy-content=`${contentFiles.tableHeader.tableCardTransition_tooltip}`)
+                svg.table-card-transition__table
+                    use(xlink:href="img/svg/icons.svg#table")
+                svg.table-card-transition__cards.table-card-transition--icon-hide
+                    use(xlink:href="img/svg/icons.svg#th-large")
+            
+            //* Edit Content
+            .edit-content
+                a.btn-icon(href=`${contentFiles.tableHeader.editContent_link}`, data-tippy-content=`${contentFiles.tableHeader.editContent_tooltip}`)
+                    svg.btn-icon__icon
+                        use(xlink:href="img/svg/icons.svg#arrow-up")
+
+            //* Edit Content Header
+            .edit-content-header
+                a.btn-icon(href=`${contentFiles.tableHeader.editContentHeader_link}`, data-tippy-content=`${contentFiles.tableHeader.editContentHeader_tooltip}`)
+                    svg.btn-icon__icon
+                        use(xlink:href="img/svg/icons.svg#pencil2")
+
+            //* Sub Menu
+            .table-header__open-sub-menu.btn-icon.btn-icon--rotate-180(data-tippy-content=`${contentFiles.tableHeader.subMenuIcon_tooltip}`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/icons.svg#angle-double-up")
+
+            //* Search
+            .table-content-search(data-tippy-content=`${contentFiles.tableHeader.searchIcon_tooltip}`)
+                .table-content-search__icons
+                    svg.table-content-search__icon
+                        use(xlink:href="img/svg/bootstrap-icons.svg#search")
+                    svg.table-content-search__icon.table-content-search__icon--hide
+                        use(xlink:href="img/svg/icons.svg#close")
+                form.table-content-search__form(action="" autocomplete="on")
+                    input.table-content-search__input(type='text' name='search'  placeholder=`${contentFiles.tableHeader.searchInput}`)
+
+        .table-query.table-query__files
+            form.frmGroup.table-query__select
+                h2.frmGroup__header= contentFiles.select.header
+
+                .table-query__select-file-wrapper
+
+                    .table-query__select-file
+                        .table-query__select-file-text= contentFiles.select.selectAllFile.text
+                        button.frmGroup__button.frmGroup__button--select-file(id="btnSelectAllFile")= contentFiles.select.selectAllFile.btn
+                    
+                    .table-query__select-file
+                        .table-query__select-file-text= contentFiles.select.unSelectFile.text
+                        button.frmGroup__button.frmGroup__button--select-file(id="btnUnSelectFile")= contentFiles.select.unSelectFile.btn
+      
+                    .table-query__select-file
+                        .table-query__select-file-text= contentFiles.select.selectOtherFile.text
+                        button.frmGroup__button.frmGroup__button--select-file(id="btnSelectOtherFile")= contentFiles.select.selectOtherFile.btn
+                    
+                    .table-query__select-file
+                        .table-query__select-file-text= contentFiles.select.deleteSelectedFile.text
+                        button.frmGroup__button.frmGroup__button--select-file.frmGroup__button--red(id="btnDeleteSelectFile")= contentFiles.select.deleteSelectedFile.btn
+
+            form.frmGroup.table-query__filter.table-query__filter--files
+                h2.frmGroup__header= contentFiles.filter.header
+
+                .table-query__filter-files
+                    input.frmGroup__input.filter__input(type="text" placeholder=`${contentFiles.filter.id}` value=`` maxlength='32')
+                    button.frmGroup__button.frmGroup__button--height-input.filter__id-button= contentFiles.filter.getIdBtn
+                    
+                    // * select Content Type
+                    .frmGroup__select-wrapper.filter__select
+                        svg.frmGroup__select-arrow
+                            use(xlink:href='img/svg/icons.svg#angle-down')
+                        select.frmGroup__select
+                            option.frmGroup__select-option(value="default", selected)= contentFiles.tableHeader.newFile.radio.fileType
+                            option.frmGroup__select-option(value="picture")= contentFiles.tableHeader.newFile.radio.image
+                            option.frmGroup__select-option(value="file")= contentFiles.tableHeader.newFile.radio.file
+                            option.frmGroup__select-option(value="video")= contentFiles.tableHeader.newFile.radio.video
+ 
+                    .filter__date-range.filter__created(id="filterDateCreatedRange")
+                        input.frmGroup__input(type="text" name="createdBegin" id="filterCreatedBegin" placeholder=`${contentFiles.filter.createdDate[0]}` value=`` autocomplete="off")
+                        input.frmGroup__input(type="text" name="createdEnd" id="filterCreatedEnd" placeholder=`${contentFiles.filter.updatedDate[1]}` value=`` autocomplete="off")
+
+                    .filter__date-range.filter__updated(id="filterDateUpdatedRange")
+                        input.frmGroup__input(type="text" name="updatedBegin" id="filterUpdatedBegin" placeholder=`${contentFiles.filter.updatedDate[0]}` value=`` autocomplete="off")
+                        input.frmGroup__input(type="text" name="updatedEnd" id="filterUpdatedEnd" placeholder=`${contentFiles.filter.updatedDate[1]}` value=`` autocomplete="off")
+
+                button.frmGroup__button.frmGroup__button--height-auto.table-query__filter-button= contentFiles.filter.btnFilter
+
+            form.frmGroup.table-query__sort.table-query__sort--files
+                h2.frmGroup__header= contentFiles.sort.header
+
+                .table-query__sort-all-checkbox
+                    // * by id
+                    +sortCheck("chkSortId", contentFiles.sort.id,"swcSortId")
+
+                    // * by File Name
+                    +sortCheck("chkSortFileName", "Dosya Adı","swcSortFileName")
+
+                    // * by File Type
+                    +sortCheck("chkSortFileType", "Dosya Türü","swcSortFileType")
+
+                    // * by File Size
+                    +sortCheck("chkSortFileSize", "Dosya Boyutu","swcSortFileSize")
+
+                    // * by Created Date
+                    +sortCheck("chkSortCreated", contentFiles.sort.byCreatedDate,"swcSortCreated")
+
+                    // * by Updated Date
+                    +sortCheck("chkSortUpdated", contentFiles.sort.byUpdatedDate,"swcSortUpdated")
+
+                button.frmGroup__button.frmGroup__button--height-auto.table-query__sort-button= contentFiles.sort.btnSort
+
+        .grTable.grTable--card
+            .grTable__row.grTable__row--head
+                .grTable__cell= table.header.select
+                .grTable__cell= table.header.edit
+                .grTable__cell= table.header.delete
+                .grTable__cell= table.header.id
+                .grTable__cell= table.header.title
+                .grTable__cell= table.header.type
+                .grTable__cell= table.header.size
+                .grTable__cell= table.header.created
+                .grTable__cell= table.header.updated
+            each row in tblFile
+                +grTable__row-file(row, table.header, table.tooltip)

@@ -1,0 +1,84 @@
+.frmGroup-slider {
+  position: relative;
+
+  scroll-behavior: smooth;
+
+  overflow: hidden;
+
+  @include form-width;
+  height: 80rem;
+
+  &__carousel {
+    display: flex;
+    align-items: flex-start;
+
+    position: absolute;
+
+    // transition: transform 500ms ease-in-out;
+    transform: translate(-50%, 0);
+    &--transition {
+      transform: translate(0%, 0);
+    }
+
+    & > .frmGroup {
+      @include form-width;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+
+    // height: 7rem;
+    height: 6rem;
+    @include form-width;
+
+    background-color: var(--black-050);
+    border-radius: $user-operations-border-radius;
+
+    margin-bottom: 2.5rem;
+  }
+
+  &__overlay,
+  &__left-btn,
+  &__right-btn {
+    height: 100%;
+    width: 50%;
+  }
+
+  &__overlay {
+    left: 0;
+
+    border: 0.3rem solid var(--black-050);
+
+    position: absolute;
+    z-index: 5;
+
+    border-radius: $user-operations-border-radius;
+
+    background-color: var(--color-white);
+
+    // transition: transform 500ms ease-in-out;
+    &--transition {
+      transform: translate(100%, 0);
+    }
+  }
+
+  &__left-btn,
+  &__right-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 10;
+
+    cursor: pointer;
+
+    font-family: $bs-font-sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+}

@@ -1,0 +1,16 @@
+mixin news_page_cards(cards, n)
+    .nCards-news-page
+        h1.nCards-news-page__header= cards[n].header.text
+        a.nCards-news-page__icon-link(href=`${cards[n].header.linkCards}`)
+            svg.nCards-news-page__icon
+                use(xlink:href='img/svg/icons.svg#th')
+        ul.nCards-news-page__list
+            each card in cards[n].cards
+                li
+                    a.nCard(href=`${card.link}`)
+                        img.nCard__img(src=`${card.imgLink}` ald=`${card.imgAlt}`)
+                        .nCard__content
+                            span.nCard__date= card.dateCreated
+                            h1.nCard__header= card.header
+                            p.nCard__user-name= card.userName
+                            p.nCard__text= card.text

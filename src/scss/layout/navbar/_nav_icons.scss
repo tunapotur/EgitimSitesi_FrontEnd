@@ -1,0 +1,66 @@
+.nav-icons {
+  flex-shrink: 1;
+
+  $icon-size: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  // toplam icon buyuklugu + genislik
+  width: ($icon-size) * 3 + 3rem;
+
+  margin: 0 2rem 0 1rem;
+
+  @include respond(phone) {
+    order: 2;
+
+    margin: 0;
+    height: $navbar-user-btn_height_responsive;
+
+    width: 100%;
+
+    justify-content: space-around;
+
+    background-color: rgba(var(--RGB_black-150), 0.2);
+    border-bottom: 1px solid var(--black-100);
+  }
+
+  &__icon {
+    flex-shrink: 0;
+
+    @include svg_block;
+    @include svg_color(var(--black-600));
+    @include box($icon-size);
+
+    cursor: pointer;
+
+    transition: all 150ms ease-in-out;
+
+    @include respond(phone) {
+      @include box(2.5rem);
+    }
+
+    &:hover {
+      @include svg_color(var(--black-800));
+      stroke: var(--black-800);
+      transform: scale(1.2);
+    }
+  }
+
+  &__icon--none {
+    display: none;
+  }
+
+  #fixNavbar {
+    & > :last-child {
+      display: none;
+    }
+  }
+
+  #fullScreen {
+    @include respond(phone) {
+      display: none;
+    }
+  }
+}

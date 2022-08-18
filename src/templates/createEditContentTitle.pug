@@ -1,0 +1,108 @@
+extends base/base.pug
+
+block main
+    .frmPage-wrapper
+        // * page nav
+        .frmNav
+            h2.frmNav__header= createEditContentTitle.nav.header
+            
+            ul.frmNav__list
+                li
+                    a.frmNav__link(href="#frmContentHeader_headerContent")= createEditContentTitle.nav.list[0]
+                li
+                    a.frmNav__link(href="#frmContentHeader_headerPhoto")= createEditContentTitle.nav.list[1]
+                li
+                    a.frmNav__link(href="#frmContentHeader_nextStep")= createEditContentTitle.nav.list[2]
+                li
+                    a.frmNav__link(href="#frmContentHeader_delete")= createEditContentTitle.nav.list[3]
+            .frmNav__buttons
+                button.frmNav__btn.frmNav__btn-backward
+                    svg.frmNav__btn-svg
+                        use(xlink:href='img/svg/icons.svg#chevron-left')
+                button.frmNav__btn.frmNav__btn-forward
+                    svg.frmNav__btn-svg
+                        use(xlink:href='img/svg/icons.svg#chevron-right')
+
+        .frmGroup-wrapper
+            //* Content information
+            form.frmGroup(id="frmContentHeader_headerContent")
+                h2.frmGroup__header= createEditContentTitle.info.header
+
+                input.frmGroup__input(type="text" placeholder=`${createEditContentTitle.info.id}` value=`` disabled)
+                
+                textarea.frmGroup__input.frmGroup__textarea(row="2" maxlength='127' placeholder=`${createEditContentTitle.info.title}` required)
+
+                // select Content Type
+                .frmGroup__select-wrapper
+                    svg.frmGroup__select-arrow
+                        use(xlink:href='img/svg/icons.svg#angle-down')
+                    select.frmGroup__select
+                        option.frmGroup__select-option(value="default", selected)= createEditContentTitle.info.selectContentType.default
+                        option.frmGroup__select-option(value="article")= createEditContentTitle.info.selectContentType.article
+                        option.frmGroup__select-option(value="news")= createEditContentTitle.info.selectContentType.news
+                        option.frmGroup__select-option(value="tutorial")= createEditContentTitle.info.selectContentType.tutorial
+                // select Publish Type
+                .frmGroup__select-wrapper
+                    svg.frmGroup__select-arrow
+                        use(xlink:href='img/svg/icons.svg#angle-down')
+                    select.frmGroup__select
+                        option.frmGroup__select-option(value="default", selected)= createEditContentTitle.info.selectPublishType.default
+                        option.frmGroup__select-option(value="draft")= createEditContentTitle.info.selectPublishType.draft
+                        option.frmGroup__select-option(value="published")= createEditContentTitle.info.selectPublishType.published
+                        option.frmGroup__select-option(value="archive")= createEditContentTitle.info.selectPublishType.archive
+
+                button.frmGroup__button.frmGroup__button--margin-width= createEditContentTitle.info.button
+
+            //* Content Photo
+            form.frmGroup(id="frmContentHeader_headerPhoto")
+                h2.frmGroup__header= createEditContentTitle.image.heater
+
+                .frmGroup__sub-group-column
+                    .frmGroup__photo-operation
+                        label.frmGroup__photo-label(for="frmContentHeader_input")
+                            input.frmGroup__photo-input(id="frmContentHeader_input" type="file" name="fileUpload" accept="image/*")
+                            svg.frmGroup__photo-upload-icon
+                                use(xlink:href="img/svg/icons.svg#upload")
+                            p.frmGroup__text= createEditContentTitle.image.text
+                        .frmGroup__photo-edit
+                            svg.frmGroup__close-icon
+                                use(xlink:href="img/svg/icons.svg#close")
+                            //- img(src="#" alt="Edit User Photo")
+
+                //- .frmGroup__sub-group-column.u-margin-top-1.u-margin-bottom-1_5
+                //-     h3.frmGroup__header-inner= createEditContentTitle.image.previewHeader
+                //-     p.frmGroup__text= createEditContentTitle.image.previewText
+                //- .frmGroup__previewPhoto.frmGroup__sub-group-row
+                //-     //- img.previewPhoto__polygon(src='data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=' alt='User Photo')
+                //-     .aCard.previewPhoto__background
+                //-         .aCard__image-wrapper
+                //-             img.aCard__image-top(src=`${misc.onePixelPhoto}` alt='User Background')
+                //-             img.aCard__profile-image(src=`${misc.onePixelPhoto}` alt='User Photo')
+
+                button.frmGroup__button.frmGroup__button--disabled.frmGroup__button--margin-width.u-margin-top-2(disabled)= createEditContentTitle.image.button
+
+            // * Next Step
+            form.frmGroup(id="frmContentHeader_nextStep")
+                h2.frmGroup__header= createEditContentTitle.nextStep.header
+
+                p.frmGroup__text!= createEditContentTitle.nextStep.text[0]
+                p.frmGroup__text!= createEditContentTitle.nextStep.text[1]
+
+                button.frmGroup__button.frmGroup__button--margin-width.u-margin-top-2= createEditContentTitle.nextStep.button
+
+            // * Delete Header
+            form.frmGroup(id="frmContentHeader_delete")
+                h2.frmGroup__header= createEditContentTitle.delete.header
+
+                p.frmGroup__text!= createEditContentTitle.delete.text[0]
+                p.frmGroup__text!= createEditContentTitle.delete.text[1]
+                p.frmGroup__text!= createEditContentTitle.delete.text[2]
+
+                .checkbox.checkbox--long-text.checkbox--margin-width.checkbox--red
+                    input.checkbox__input(type="checkbox" id="frmContentHeader_deleteHeaderCheck")
+                    label.checkbox__label(for="frmContentHeader_deleteHeaderCheck")
+                        span.checkbox__icon
+                            svg.checkbox__svg
+                                use(xlink:href="img/svg/icons.svg#check")
+                        span.checkbox__text= createEditContentTitle.delete.check
+                button.frmGroup__button.frmGroup__button--margin-width.frmGroup__button--red= createEditContentTitle.delete.button

@@ -1,0 +1,16 @@
+include ../mixin/mixin_brand.pug
+-
+    const date = new Date();
+    const year = date.getFullYear();
+
+footer.footer-wrapper
+    .footer
+        .footer__brand
+            +brand('brand-footer')
+
+        .footer__content
+            .footer__links
+                each val in footer
+                    a.footer__link(href= `${val.link}`)= val.text
+
+            .footer__copyright &#169 #{year} by Ahmet Tuna POTUR

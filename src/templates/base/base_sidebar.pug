@@ -1,0 +1,21 @@
+doctype html
+html(lang="tr")
+    head
+        include ../includes/_head.pug
+
+    body
+        .page-wrapper.page-wrapper__has-sidebar(id="pageWrapper")
+            include ../includes/_sidebar.pug
+
+            .content-wrapper(id="contentWrapper")
+                include ../includes/_navbar.pug
+
+                main.main-wrapper.readable-area
+                    .scroll-top-btn.scroll-top-btn--fixed.u-z-index-70(id="contentScrollTop")
+                        svg.scroll-top-btn__icon
+                            use(xlink:href='img/svg/icons.svg#arrow-up')
+                    
+                    block main
+                        h1 Base
+
+                include ../includes/_footer.pug

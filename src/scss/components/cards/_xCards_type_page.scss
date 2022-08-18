@@ -1,0 +1,72 @@
+.xCards-type-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+
+  &__header {
+    font-weight: 600;
+    font-size: 4rem;
+    text-shadow: var(--bs-sm);
+    color: var(--orange-700);
+  }
+
+  &__icon-link {
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+
+    transition: transform 0.2s;
+    &:hover {
+      transform: translateY(-5%);
+      .xCards-type-page__icon {
+        @include svg_color(var(--black-700));
+      }
+    }
+
+    &:active {
+      transform: translateY(0%);
+    }
+  }
+
+  &__icon {
+    @include svg_color(var(--black-600));
+    @include svg_block;
+    @include box(3rem);
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @include respond(big-desktop) {
+      width: $xCard-total-width * 6;
+    }
+
+    width: $xCard-total-width * 5;
+
+    @include respond(tab-land) {
+      width: $xCard-total-width * 4;
+    }
+
+    @include respond(tab-port) {
+      width: $xCard-total-width-tab-port * 4;
+    }
+
+    @include respond(phone) {
+      width: $xCard-total-width-phone * 3;
+    }
+
+    @include respond(phone-fold) {
+      width: $xCard-total-width-phone * 2;
+    }
+
+    li {
+      margin-bottom: 2rem;
+    }
+  }
+}

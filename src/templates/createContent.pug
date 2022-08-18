@@ -1,0 +1,142 @@
+extends base/base.pug
+include mixin/mixin_sortCheck.pug
+
+mixin grTable__row(row, label, tooltip)
+    .grTable__row
+        .grTable__cell.grTable__image
+            a.thumbnail(target="_blank", href=`${row.image}`)
+                img.thumbnail__image(src=`${row.image}`, alt=`${row.title}`)
+        .grTable__cell.grTable__content-editor
+            a.btn-icon(href=`${row.content_link}`, data-tippy-content=`${tooltip.content_editor}`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/icons.svg#arrow-up")
+        .grTable__cell.grTable__edit
+            a.btn-icon(href=`${row.header_editor}`, data-tippy-content=`${tooltip.editContentHeader}`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/icons.svg#pencil2")
+        .grTable__cell.grTable__content-files
+            a.btn-icon(href=`${row.files}`, data-tippy-content=`${tooltip.contentFiles}`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/icons.svg#copy")
+        .grTable__cell.grTable__id(data-th=`${label.id}`)= row.id
+        .grTable__cell.grTable__title(data-th=`${label.title}`)
+            a.grTable__link(href=`#`)= row.title
+        .grTable__cell.grTable__type(data-th=`${label.type}`)= row.type
+        .grTable__cell.grTable__status(data-th=`${label.status}`)= row.status
+        .grTable__cell.grTable__created(data-th=`${label.created}`)= row.created
+        .grTable__cell.grTable__updated(data-th=`${label.updated}`)= row.updated
+
+block main
+    .rsTable-wrapper
+        .table-header
+            //* New Content            
+            a.table-header__new-content.btn-icon(id='frmCreateNewContent', data-tippy-content=`${createContent.tableHeader.newContent.tooltip}`, href=`${createContent.tableHeader.newContent.link}`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/bootstrap-icons.svg#file-earmark-plus")
+
+            //* Table Text
+            .table-header__header-text
+                h1.table-header__header= createContent.tableHeader.text.header
+                p.table-header__text= createContent.tableHeader.text.text
+            
+            //* Card - Table Icon
+            .table-card-transition(data-tippy-content=`${createContent.tableHeader.tableCardTransition_tooltip}`)
+                svg.table-card-transition__table
+                    use(xlink:href="img/svg/icons.svg#table")
+                svg.table-card-transition__cards.table-card-transition--icon-hide
+                    use(xlink:href="img/svg/icons.svg#th-large")
+
+            //* Sub Menu
+            .table-header__open-sub-menu.btn-icon.btn-icon--rotate-180(data-tippy-content=`${createContent.tableHeader.subMenuIcon_tooltip}`)
+                svg.btn-icon__icon
+                    use(xlink:href="img/svg/icons.svg#angle-double-up")
+
+            //* Search
+            .table-content-search(data-tippy-content=`${createContent.tableHeader.searchIcon_tooltip}`)
+                .table-content-search__icons
+                    svg.table-content-search__icon
+                        use(xlink:href="img/svg/bootstrap-icons.svg#search")
+                    svg.table-content-search__icon.table-content-search__icon--hide
+                        use(xlink:href="img/svg/icons.svg#close")
+                form.table-content-search__form(action="" autocomplete="on")
+                    input.table-content-search__input(type='text' name='search'  placeholder=`${createContent.tableHeader.searchInput}`)
+
+        .table-query
+            form.frmGroup.table-query__filter
+                h2.frmGroup__header= createContent.filter.header
+
+                .table-query__filter-all-input
+                    input.frmGroup__input.filter__input(type="text" placeholder=`${createContent.filter.id}` value=`` maxlength='32')
+                    button.frmGroup__button.frmGroup__button--height-input.filter__id-button= createContent.filter.getIdBtn
+
+                    // * select Content Type
+                    .frmGroup__select-wrapper.filter__select-l
+                        svg.frmGroup__select-arrow
+                            use(xlink:href='img/svg/icons.svg#angle-down')
+                        select.frmGroup__select
+                            option.frmGroup__select-option(value="default", selected)= createContent.filter.selectContentType.contentType
+                            option.frmGroup__select-option(value="article")= createContent.filter.selectContentType.article
+                            option.frmGroup__select-option(value="news")= createContent.filter.selectContentType.news
+                            option.frmGroup__select-option(value="tutorial")= createContent.filter.selectContentType.tutorial
+
+                    // * select Publish Type
+                    .frmGroup__select-wrapper.filter__select-r
+                        svg.frmGroup__select-arrow
+                            use(xlink:href='img/svg/icons.svg#angle-down')
+                        select.frmGroup__select
+                            option.frmGroup__select-option(value="default", selected)= createContent.filter.selectPublishType.publishType
+                            option.frmGroup__select-option(value="draft")= createContent.filter.selectPublishType.draft
+                            option.frmGroup__select-option(value="published")= createContent.filter.selectPublishType.published
+                            option.frmGroup__select-option(value="archive")= createContent.filter.selectPublishType.archive
+
+                    .filter__date-range.filter__created(id="filterDateCreatedRange")
+                        input.frmGroup__input(type="text" name="createdBegin" id="filterCreatedBegin" placeholder=`${createContent.filter.createdDate[0]}` value=`` autocomplete="off")
+                        input.frmGroup__input(type="text" name="createdEnd" id="filterCreatedEnd" placeholder=`${createContent.filter.updatedDate[1]}` value=`` autocomplete="off")
+
+                    .filter__date-range.filter__updated(id="filterDateUpdatedRange")
+                        input.frmGroup__input(type="text" name="updatedBegin" id="filterUpdatedBegin" placeholder=`${createContent.filter.updatedDate[0]}` value=`` autocomplete="off")
+                        input.frmGroup__input(type="text" name="updatedEnd" id="filterUpdatedEnd" placeholder=`${createContent.filter.updatedDate[1]}` value=`` autocomplete="off")
+
+                button.frmGroup__button.frmGroup__button--height-auto.table-query__filter-button= createContent.filter.btnFilter
+
+            form.frmGroup.table-query__sort
+                h2.frmGroup__header= createContent.sort.header
+
+                .table-query__sort-all-checkbox
+                    // * by id
+                    +sortCheck("chkSortId",createContent.sort.id,"swcSortId")
+
+                    // * by Headers
+                    +sortCheck("chkSortHeaders", createContent.sort.byHeaders,"swcSortHeader")
+
+                    // * by Content Type
+                    +sortCheck("chkSortContent", createContent.sort.byContentType,"swcSortContent")
+
+                    // * by Publishing Type
+                    +sortCheck("chkSortPublis", createContent.sort.byPublishingType,"swcSortPublis")
+
+                    // * by Created Date
+                    +sortCheck("chkSortCreated", createContent.sort.byCreatedDate,"swcSortCreated")
+
+                    // * by Updated Date
+                    +sortCheck("chkSortUpdated", createContent.sort.byUpdatedDate,"swcSortUpdated")
+
+                button.frmGroup__button.frmGroup__button--height-auto.table-query__sort-button= createContent.sort.btnSort
+        
+        .grTable.grTable--card
+            .grTable__row.grTable__row--head
+                .grTable__cell
+                    span.grTable__multi-text= table.header.content_page[0]
+                    span.grTable__multi-text= table.header.content_page[1]
+                .grTable__cell
+                    span.grTable__multi-text= table.header.edit_header[0]
+                    span.grTable__multi-text= table.header.edit_header[1]
+                .grTable__cell= table.header.files
+                .grTable__cell= table.header.id
+                .grTable__cell= table.header.title
+                .grTable__cell= table.header.type
+                .grTable__cell= table.header.status
+                .grTable__cell= table.header.created
+                .grTable__cell= table.header.updated
+            each row in tblContent
+                +grTable__row(row, table.header, table.tooltip)

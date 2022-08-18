@@ -1,0 +1,38 @@
+@mixin dp-button {
+  .button {
+    /***
+       Place style adjustment for date picker's buttons here, if needed
+       ***/
+    font-size: 100%;
+    line-height: 1.5;
+    background: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    .datepicker-header & {
+      @include dp-header-button-common;
+
+      /***
+         Place style adjustment specific to the header buttons here, if needed
+         ***/
+
+      font-size: 1.8rem;
+    }
+
+    .datepicker-footer & {
+      @include dp-footer-button-common;
+
+      /***
+         Place style adjustment specific to the footer buttons here, if needed
+         ***/
+      font-size: 1.4rem;
+      height: 3rem;
+      margin: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--black-150);
+
+      background-color: var(--color-white);
+    }
+  }
+}

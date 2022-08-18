@@ -1,0 +1,86 @@
+:root {
+  @include light_colors;
+}
+
+[data-theme='dark'] {
+  @include dark_colors;
+
+  .user-menu__links-header {
+    background-color: var(--color-white);
+    text-shadow: 0px 2px 3px rgba(var(--RGB_black-150), 0.5);
+  }
+}
+
+// * Varsayilan Dark Light Ayarlari
+/*
+//sitenin renk tablosu yükleniyor
+:root {
+  @include color-css-variable-light;
+}
+
+// dark theme renkleri
+[data-theme='dark'] {
+  @include color-css-variable-dark;
+}
+
+// eger isletim sistemi dark theme olarak ayarliysa secilen renkler
+@media (prefers-color-scheme: dark) {
+// defaults to dark theme
+
+  // #darkLight {
+  //   .nav-icons__icon {
+  //     transform: rotate(180deg);
+  //   }
+  // }
+
+  :root {
+    @include colors_dark;
+  }
+
+  [data-theme='light'] {
+    @include colors_light;
+  }
+}
+*/
+
+// Responsive font-size
+html {
+  scroll-behavior: smooth;
+  // overflow-x: hidden;
+
+  // This defines what 1rem is
+  font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+
+  @include respond(tab-land) {
+    // width < 1200?
+    font-size: 56.25%; //1 rem = 9px, 9/16 = 50%
+  }
+
+  @include respond(tab-port) {
+    // width < 900?
+    font-size: 50%; //1 rem = 8px, 8/16 = 50%
+  }
+
+  @include respond(big-desktop) {
+    // width > 1800px
+    font-size: 75%; //1rem = 12, 12/16
+  }
+}
+
+body {
+  font-family: $font-primary;
+  font-weight: 400;
+  font-size: $default-font-size;
+  line-height: 1.6;
+  color: var(--fc-medium);
+
+  background-color: var(--color-white);
+}
+
+// Seçim ayarlari
+/*
+::selection {
+  background-color: $color-yellow;
+  color: $color-white;
+}
+*/

@@ -1,0 +1,63 @@
+extends base/base_noUser.pug
+
+block main
+    .frmGroup-wrapper
+
+        .frmGroup-slider
+            .frmGroup-slider__buttons
+                .frmGroup-slider__overlay
+                .frmGroup-slider__left-btn= pages.logIn.frmGroup__header
+                .frmGroup-slider__right-btn= pages.signUp.frmGroup__header
+
+            .frmGroup-slider__carousel
+                //- SignUp
+                form.frmGroup(id="frmSignUp")
+                    h2.frmGroup__header= pages.signUp.frmGroup__header
+
+                    input.frmGroup__input(type="text" autocomplete="name" name="name" id="frmSignUp_Name" placeholder=`${pages.signUp.name}` value=`` required)
+                    input.frmGroup__input(type="text" autocomplete="surname" name="surname" id="frmSignUp_surname" placeholder=`${pages.signUp.surname}` value=`` required)
+                    input.frmGroup__input(type="email" autocomplete="email" name="email" id="frmSignUp_email" placeholder=`${pages.signUp.email}` value=`` required)
+
+
+                    .frmGroup__sub-group-column
+                        .frmValidate.u-margin-bottom-0_5
+                            input.frmGroup__input(type="password" autocomplete="password" name="new_password" id="frmPass_newPassword" placeholder=`${pages.signUp.password}` value=`` required)
+                            .frmValidate__messages
+                                .frmValidate__input-msg.frmValidate__input-msg--deny= pages.signUp.checkMessage[0]
+                                .frmValidate__input-msg.frmValidate__input-msg--accept= pages.signUp.checkMessage[1]
+                        p.frmGroup__text= pages.signUp.text[0]
+
+                    .frmValidate
+                        input.frmGroup__input(type="password" autocomplete="password" name="new_password_check" id="frmPass_newPasswordCheck" 
+                        placeholder=`${pages.signUp.passwordCheck}` value=`` required)
+                        .frmValidate__messages
+                            .frmValidate__input-msg.frmValidate__input-msg--deny= pages.signUp.checkMessage[2]
+                            .frmValidate__input-msg.frmValidate__input-msg--accept= pages.signUp.checkMessage[1]
+
+                    p.frmGroup__text= pages.signUp.text[1]
+                    .checkbox.checkbox--long-text.checkbox--margin-width
+                        input.checkbox__input(type="checkbox" id="frmSignUp_notificationCheck" checked="checked")
+                        label.checkbox__label(for="frmSignUp_notificationCheck")
+                            span.checkbox__icon
+                                svg.checkbox__svg
+                                    use(xlink:href="img/svg/icons.svg#check")
+                            span.checkbox__text= pages.signUp.text[2]
+                    button.frmGroup__button.frmGroup__button--margin-width(id="frmSignUp_btn")= pages.signUp.formBtn
+
+                //- LogIn
+                form.frmGroup(id="frmLogIn")
+                    h2.frmGroup__header= pages.logIn.frmGroup__header
+
+                    input.frmGroup__input(type="email" autocomplete="username" name="username" id="frmLogIn_name" placeholder=`${pages.logIn.username}` value=`` required)
+                    input.frmGroup__input(type="password" autocomplete="current-password" name="password" id="frmLogIn_password" placeholder=`${pages.logIn.password}` value="" required)
+                    button.frmGroup__button.frmGroup__button--margin-width(id="frmLogIn_btn")= pages.logIn.formBtn
+                    .frmGroup__sub-group-row.u-margin-top-2.u-margin-left-1.u-margin-right-1
+                        .checkbox
+                            input.checkbox__input(type="checkbox" id="frmLogIn_notificationCheck" checked="checked")
+                            label.checkbox__label(for="frm_logIn_notification-check")
+                                span.checkbox__icon
+                                    svg.checkbox__svg
+                                        use(xlink:href="img/svg/icons.svg#check")
+                                span.checkbox__text= pages.logIn.chkBox
+                        a.frmGroup__link(href=`${pages.logIn.forgotPass.link}`)
+                            .frmGroup__link-text= pages.logIn.forgotPass.text

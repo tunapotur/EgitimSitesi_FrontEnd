@@ -1,0 +1,153 @@
+extends base/base.pug
+
+block main
+    .frmPage-wrapper
+        .frmNav
+            h2.frmNav__header= pages.navHeader.header
+            ul.frmNav__list
+                li
+                    a.frmNav__link(href="#frmUserPhoto")= pages.navHeader.userPhoto
+                li
+                    a.frmNav__link(href="#frmUserBackground")= pages.navHeader.userBackground
+                li
+                    a.frmNav__link(href="#frmPersonalInfo")= pages.navHeader.personalInfo
+                li
+                    a.frmNav__link(href="#frmEmail")= pages.navHeader.eMail
+                li
+                    a.frmNav__link(href="#frmPass")= pages.navHeader.pass
+                li
+                    a.frmNav__link(href="#frmNotification")= pages.navHeader.notification
+            .frmNav__buttons
+                button.frmNav__btn.frmNav__btn-backward
+                    svg.frmNav__btn-svg
+                        use(xlink:href='img/svg/icons.svg#chevron-left')
+                button.frmNav__btn.frmNav__btn-forward
+                    svg.frmNav__btn-svg
+                        use(xlink:href='img/svg/icons.svg#chevron-right')
+
+        .frmGroup-wrapper
+            //- User Photo
+            form.frmGroup(id="frmUserPhoto")
+                h2.frmGroup__header= pages.fotoInput.userPhotoHeader
+
+                .frmGroup__sub-group-column
+                    .frmGroup__photo-operation
+                        label.frmGroup__photo-label(for="frmUserPhoto_input")
+                            input.frmGroup__photo-input(id="frmUserPhoto_input" type="file" name="fileUpload" accept="image/*")
+                            svg.frmGroup__photo-upload-icon
+                                use(xlink:href="img/svg/icons.svg#upload")
+                            p.frmGroup__text= pages.fotoInput.inputText
+                        .frmGroup__photo-edit
+                            svg.frmGroup__close-icon
+                                use(xlink:href="img/svg/icons.svg#close")
+                            //- img.frmGroup__edit-img(src="img/img3.jpeg" alt="Edit User Photo")
+
+                    //- .frmGroup__crop-buttons
+                    //-     .frmCropBtn__group
+                    //-         .frmCropBtn__btn
+                    //-             svg.frmCropBtn__icon
+                    //-                 use(xlink:href="img/svg/icons.svg#rotate-left")
+                    //-         .frmCropBtn__btn
+                    //-             svg.frmCropBtn__icon
+                    //-                 use(xlink:href="img/svg/icons.svg#repeat")
+                    //-         .frmCropBtn__btn
+                    //-             svg.frmCropBtn__icon
+                    //-                 use(xlink:href="img/svg/icons.svg#check")
+
+                .frmGroup__sub-group-column.u-margin-top-1.u-margin-bottom-1_5
+                    h3.frmGroup__header-inner= pages.fotoInput.previewHeader
+                    p.frmGroup__text= pages.fotoInput.previewText
+                .frmGroup__previewPhoto.frmGroup__sub-group-row
+                    img.previewPhoto.previewPhoto--rectangle(src=`${misc.onePixelPhoto}` alt='User Photo')
+                    img.previewPhoto.previewPhoto--circle(src=`${misc.onePixelPhoto}` alt='User Photo')
+
+                button.frmGroup__button.frmGroup__button--disabled.frmGroup__button--margin-width.u-margin-top-2(disabled)= pages.fotoInput.button
+
+            //- User Background Photo
+            form.frmGroup(id="frmUserBackground")
+                h2.frmGroup__header= pages.fotoInput.userBackgroundHeader
+
+                .frmGroup__sub-group-column
+                    .frmGroup__photo-operation
+                        label.frmGroup__photo-label(for="frmUserBackground_input")
+                            input.frmGroup__photo-input(id="frmUserBackground_input" type="file" name="fileUpload" accept="image/*")
+                            svg.frmGroup__photo-upload-icon
+                                use(xlink:href="img/svg/icons.svg#upload")
+                            p.frmGroup__text= pages.fotoInput.inputText
+                        .frmGroup__photo-edit
+                            svg.frmGroup__close-icon
+                                use(xlink:href="img/svg/icons.svg#close")
+                            //- img(src="#" alt="Edit User Photo")
+
+                .frmGroup__sub-group-column.u-margin-top-1.u-margin-bottom-1_5
+                    h3.frmGroup__header-inner= pages.fotoInput.previewHeader
+                    p.frmGroup__text= pages.fotoInput.previewText
+                .frmGroup__previewPhoto.frmGroup__sub-group-row
+                    //- img.previewPhoto__polygon(src='data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=' alt='User Photo')
+                    .aCard.previewPhoto__background
+                        .aCard__image-wrapper
+                            img.aCard__image-top(src=`${misc.onePixelPhoto}` alt='User Background')
+                            img.aCard__profile-image(src=`${misc.onePixelPhoto}` alt='User Photo')
+
+                button.frmGroup__button.frmGroup__button--disabled.frmGroup__button--margin-width.u-margin-top-2(disabled)= pages.fotoInput.button
+
+            //- Personal information
+            form.frmGroup(id="frmPersonalInfo")
+                h2.frmGroup__header= pages.userConfig.frmGroup__header[0]
+
+                input.frmGroup__input(type="text" autocomplete="name" name="name" id="frmPersonalInfo_name" placeholder=`${pages.userConfig.name}` value=`` maxlength='64' required)
+                input.frmGroup__input(type="text" autocomplete="surname" name="surname" id="frmPersonalInfo_surname" placeholder=`${pages.userConfig.surname}` maxlength='64' value=`` required)
+                .frmGroup__sub-group-column
+                    input.frmGroup__input(type="text" name="header" id="frmPersonalInfo_title" placeholder=`${pages.userConfig.title}` value=`` maxlength='64' required)
+                    p.frmGroup__text= pages.userConfig.text[0]
+                .frmGroup__sub-group-column
+                    textarea.frmGroup__input.frmGroup__textarea(row="3" form="frmPersonalInfo_textarea" id="frmId_userConfig_infoText" maxlength='1024' placeholder=`${pages.userConfig.infoText}`)
+                    p.frmGroup__text= pages.userConfig.text[1]
+                button.frmGroup__button.frmGroup__button--margin-width(id="frmPersonalInfo_btn")= pages.userConfig.formBtn
+
+            //- E-mail change
+            form.frmGroup(id="frmEmail")
+                h2.frmGroup__header= pages.userConfig.frmGroup__header[1]
+
+                //- p.frmGroup__text Hesabınıza ait e-posta değişikliğini buradan yapabilirsiniz.
+                input.frmGroup__input(type="email" autocomplete="email" name="old_email" id="frmEmail_oldEmail" placeholder=`${pages.userConfig.email[0]}` value=`tunapotur@yahoo.com` required)
+                input.frmGroup__input(type="email" autocomplete="email" name="new_email" id="frmEmail_newEmail" placeholder=`${pages.userConfig.email[1]}` value=`` required)
+                .frmGroup__sub-group-column
+                    input.frmGroup__input(type="password" autocomplete="password" name="password" id="frmEmail_password" placeholder=`${pages.userConfig.password[0]}` value=`` required)
+                    p.frmGroup__text= pages.userConfig.text[2]
+                button.frmGroup__button.frmGroup__button--margin-width(id="frmEmail_btn")= pages.userConfig.formBtn
+
+            //- Password change
+            form.frmGroup(id="frmPass")
+                h2.frmGroup__header= pages.userConfig.frmGroup__header[2]
+
+                //- p.frmGroup__text Şifre değiştirme işlemlerinizi buradan yapabilirsiniz.
+                p.frmGroup__text= pages.userConfig.text[4]
+                input.frmGroup__input(type="password" autocomplete="password" name="old_password" id="frmPass_oldPassword" placeholder=`${pages.userConfig.password[1]}` value=`123456789` required)
+                .frmValidate
+                    //- input.frmGroup__input.frmValidate__input-focus--deny
+                    //- input.frmGroup__input.frmValidate__input-focus--accept
+                    input.frmGroup__input(type="password" autocomplete="password" name="new_password" id="frmPass_newPassword" placeholder=`${pages.userConfig.password[0]}` value=`` required)
+                    .frmValidate__messages
+                        .frmValidate__input-msg.frmValidate__input-msg--deny= pages.userConfig.checkMessage[0]
+                        .frmValidate__input-msg.frmValidate__input-msg--accept= pages.userConfig.checkMessage[1]
+                .frmValidate
+                    input.frmGroup__input(type="password" autocomplete="password" name="new_password_check" id="frmPass_newPasswordCheck" 
+                    placeholder=`${pages.userConfig.password[2]}` value=`` required)
+                    .frmValidate__messages
+                        .frmValidate__input-msg.frmValidate__input-msg--deny= pages.userConfig.checkMessage[2]
+                        .frmValidate__input-msg.frmValidate__input-msg--accept= pages.userConfig.checkMessage[1]
+                button.frmGroup__button.frmGroup__button--margin-width(id="frmPass_btn")= pages.userConfig.formBtn
+
+            //- Notification
+            form.frmGroup(id="frmNotification")
+                h2.frmGroup__header= pages.userConfig.frmGroup__header[3]
+
+                .checkbox.checkbox--long-text.checkbox--margin-width
+                    input.checkbox__input(type="checkbox" id="frmNotification_check" checked="checked")
+                    label.checkbox__label(for="frmNotification_check")
+                        span.checkbox__icon
+                            svg.checkbox__svg
+                                use(xlink:href="img/svg/icons.svg#check")
+                        span.checkbox__text= pages.userConfig.text[3]
+                button.frmGroup__button.frmGroup__button--margin-width(id="frmNotification_btn")= pages.userConfig.formBtn

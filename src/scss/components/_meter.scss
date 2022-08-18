@@ -1,0 +1,55 @@
+.meter-wrapper {
+  display: grid;
+  grid-auto-rows: 2rem;
+  align-items: center;
+}
+
+.meter {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  position: relative;
+  overflow: hidden;
+
+  width: 6rem;
+  height: 1.5rem;
+
+  border: 1px solid var(--black-400);
+
+  border-radius: 0.5rem;
+
+  &__bar {
+    display: flex;
+    align-items: center;
+
+    position: absolute;
+    z-index: 10;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--black-075);
+
+    &::after {
+      @include absCenter;
+
+      content: '%' attr(data-usage);
+
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1;
+      color: var(--black-800);
+      text-shadow: var(--bs-md);
+    }
+  }
+
+  &__value {
+    position: absolute;
+
+    width: 50%;
+    height: 100%;
+
+    background-color: var(--green-500);
+  }
+}

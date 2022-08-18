@@ -1,0 +1,191 @@
+extends base/base.pug
+
+mixin create-title()
+    .tutorial-title__create-title
+        .tutorial-title__responsive-wrapper
+            h2.tutorial-title__header.tutorial-title__header--orange Başlık Oluştur
+
+        .tutorial-title__responsive-wrapper
+            input.frmGroup__input(type="text", placeholder=`Başlık Giriniz`, value=``, maxlength='127',id="tutorialTitle_inputNewTitle")
+
+        .tutorial-title__responsive-wrapper
+            .frmGroup__select-wrapper
+                svg.frmGroup__select-arrow
+                    use(xlink:href='img/svg/icons.svg#angle-down')
+                select.frmGroup__select(data-tippy-content = 'Yayın durumunu seçiniz', id='tutorialTitle_selectNewStatus')
+                    option.frmGroup__select-option(value="default", selected) Yayın Durumu
+                    option.frmGroup__select-option(value="draft") Taslak
+                    option.frmGroup__select-option(value="published") Yayında
+                    option.frmGroup__select-option(value="archive") Arşiv
+
+            .tutorial-title__icon-wrapper
+                svg.tutorial-title__icon(id='tutorialTitle_saveNewTitle')
+                    use(xlink:href="img/svg/icons.svg#floppy-o")
+
+        .tutorial-title__responsive-wrapper
+            a(href=`contentFiles.html`)
+                svg.tutorial-title__icon(id='tutorialTitle_openAllTitles')
+                    use(xlink:href="img/svg/icons.svg#copy")
+
+            svg.tutorial-title__icon(id='tutorialTitle_openAllTitles')
+                use(xlink:href="img/svg/icons.svg#enlarge2")
+
+            svg.tutorial-title__icon(id='tutorialTitle_closeAllTitles')
+                use(xlink:href="img/svg/icons.svg#shrink2")
+
+            svg.tutorial-title__icon(id='tutorialTitle_search')
+                use(xlink:href="img/svg/icons.svg#search")
+
+mixin edit-title(title)
+    .tutorial-title__edit-title
+        .tutorial-title__responsive-wrapper
+            svg.tutorial-title__icon.tutorial-title__open-sub-titles
+                use(xlink:href="img/svg/icons.svg#folder")
+
+            .rowPositionMenu
+                .rowPositionMenu__manage
+                    svg.tutorial-title__icon.rowPositionMenu__icon.rowPositionMenu__open
+                        use(xlink:href="img/svg/bootstrap-icons.svg#three-dots")
+                    svg.tutorial-title__icon.rowPositionMenu__close.rowPositionMenu__icon--hide
+                        use(xlink:href="img/svg/icons.svg#close")
+                .rowPositionMenu__list.rowPositionMenu__list--hide
+                    svg.tutorial-title__icon.rowPositionMenu__carry(data-tippy-content='Başlığı Tutarak Taşır')
+                        use(xlink:href="img/svg/icons.svg#equals")
+                    svg.tutorial-title__icon.rowPositionMenu__move-up-one(data-tippy-content='Başlığı Bir Seviye Yukarı Taşır')
+                        use(xlink:href="img/svg/icons.svg#angle-up")
+                    svg.tutorial-title__icon.rowPositionMenu__move-down-one(data-tippy-content='Başlığı Bir Seviye Aşağı Taşır')
+                        use(xlink:href="img/svg/icons.svg#angle-down")
+                    svg.tutorial-title__icon.rowPositionMenu__move-top(data-tippy-content='Başlığı En Üste Taşır')
+                        use(xlink:href="img/svg/icons.svg#angle-double-up")
+                    svg.tutorial-title__icon.rowPositionMenu__move-bottom(data-tippy-content='Başlığı En Aşağı Taşır')
+                        use(xlink:href="img/svg/icons.svg#angle-double-down")
+                    svg.tutorial-title__icon.rowPositionMenu__send(data-tippy-content='Başlığı Başka Gruba Taşır')
+                        use(xlink:href="img/svg/icons.svg#mail-forward")
+
+            svg.tutorial-title__icon.tutorial-title__save-title
+                use(xlink:href="img/svg/icons.svg#floppy-o")
+
+            svg.tutorial-title__icon.tutorial-title__delete-title
+                use(xlink:href="img/svg/icons.svg#times-circle")
+
+        .tutorial-title__responsive-wrapper
+            input.frmGroup__input.tutorial-title__title-input(type="text" placeholder=`Başlık Giriniz` value=`${title}` maxlength='127')
+
+        .tutorial-title__responsive-wrapper
+            .frmGroup__select-wrapper
+                svg.frmGroup__select-arrow
+                    use(xlink:href='img/svg/icons.svg#angle-down')
+                select.frmGroup__select.tutorial-title__title-select(data-tippy-content = 'Yayın durumunu seçiniz')
+                    option.frmGroup__select-option(value="default", disabled) Yayın Durumu
+                    option.frmGroup__select-option(value="draft") Taslak
+                    option.frmGroup__select-option(value="published", selected) Yayında
+                    option.frmGroup__select-option(value="archive") Arşiv
+
+            .tutorial-title__info
+                .tutorial-title__info-header Id
+                .tutorial-title__info-text 9735
+
+        .tutorial-title__responsive-wrapper
+            .tutorial-title__info
+                .tutorial-title__info-header Oluşturma
+                .tutorial-title__info-text 03.06.2021
+
+            .tutorial-title__info
+                .tutorial-title__info-header Güncelleme
+                .tutorial-title__info-text 04.07.2021
+
+mixin create-sub-title()
+    .tutorial-title__create-sub-title
+        .tutorial-title__responsive-wrapper
+            h2.tutorial-title__sub-header Alt Başlık Oluştur
+
+        .tutorial-title__responsive-wrapper
+            input.frmGroup__input(type="text" placeholder=`Alt Başlık Giriniz` value=`` maxlength='127')
+
+        .tutorial-title__responsive-wrapper
+            .frmGroup__select-wrapper
+                svg.frmGroup__select-arrow
+                    use(xlink:href='img/svg/icons.svg#angle-down')
+                select.frmGroup__select(data-tippy-content = 'Yayın durumunu seçiniz')
+                    option.frmGroup__select-option(value="default", selected) Yayın Durumu
+                    option.frmGroup__select-option(value="draft") Taslak
+                    option.frmGroup__select-option(value="published") Yayında
+                    option.frmGroup__select-option(value="archive") Arşiv
+
+            .tutorial-title__icon-wrapper
+                svg.tutorial-title__icon.tutorial-title__save-title
+                    use(xlink:href="img/svg/icons.svg#floppy-o")
+
+mixin edit-sub-title(sub_title, editor_page)
+    .tutorial-title__edit-sub-title
+        .tutorial-title__responsive-wrapper
+            a.tutorial-title__sub-header-link(href=`${editor_page}`)
+                svg.tutorial-title__icon
+                    use(xlink:href="img/svg/icons.svg#arrow-up")
+
+            .rowPositionMenu
+                .rowPositionMenu__manage
+                    svg.tutorial-title__icon.rowPositionMenu__icon.rowPositionMenu__open
+                        use(xlink:href="img/svg/bootstrap-icons.svg#three-dots")
+                    svg.tutorial-title__icon.rowPositionMenu__close.rowPositionMenu__icon--hide
+                        use(xlink:href="img/svg/icons.svg#close")
+                .rowPositionMenu__list.rowPositionMenu__list--hide
+                    svg.tutorial-title__icon.rowPositionMenu__carry(data-tippy-content='Başlığı Tutarak Taşır')
+                        use(xlink:href="img/svg/icons.svg#equals")
+                    svg.tutorial-title__icon.rowPositionMenu__move-up-one(data-tippy-content='Başlığı Bir Seviye Yukarı Taşır')
+                        use(xlink:href="img/svg/icons.svg#angle-up")
+                    svg.tutorial-title__icon.rowPositionMenu__move-down-one(data-tippy-content='Başlığı Bir Seviye Aşağı Taşır')
+                        use(xlink:href="img/svg/icons.svg#angle-down")
+                    svg.tutorial-title__icon.rowPositionMenu__move-top(data-tippy-content='Başlığı En Üste Taşır')
+                        use(xlink:href="img/svg/icons.svg#angle-double-up")
+                    svg.tutorial-title__icon.rowPositionMenu__move-bottom(data-tippy-content='Başlığı En Aşağı Taşır')
+                        use(xlink:href="img/svg/icons.svg#angle-double-down")
+                    svg.tutorial-title__icon.rowPositionMenu__send(data-tippy-content='Başlığı Başka Gruba Taşır')
+                        use(xlink:href="img/svg/icons.svg#mail-forward")
+
+            svg.tutorial-title__icon.tutorial-title__save-title
+                use(xlink:href="img/svg/icons.svg#floppy-o")
+
+            svg.tutorial-title__icon.tutorial-title__delete-title
+                use(xlink:href="img/svg/icons.svg#times-circle")
+
+        .tutorial-title__responsive-wrapper
+            input.frmGroup__input(type="text" placeholder=`Başlık Giriniz` value=`${sub_title}` maxlength='127')
+
+        .tutorial-title__responsive-wrapper
+            .frmGroup__select-wrapper
+                svg.frmGroup__select-arrow
+                    use(xlink:href='img/svg/icons.svg#angle-down')
+                select.frmGroup__select(data-tippy-content = 'Yayın durumunu seçiniz')
+                    option.frmGroup__select-option(value="default", disabled) Yayın Durumu
+                    option.frmGroup__select-option(value="draft") Taslak
+                    option.frmGroup__select-option(value="published", selected) Yayında
+                    option.frmGroup__select-option(value="archive") Arşiv
+
+            .tutorial-title__info
+                .tutorial-title__info-header Id
+                .tutorial-title__info-text 9735
+
+        .tutorial-title__responsive-wrapper
+            .tutorial-title__info
+                .tutorial-title__info-header Oluşturma
+                .tutorial-title__info-text 03.06.2021
+
+            .tutorial-title__info
+                .tutorial-title__info-header Güncelleme
+                .tutorial-title__info-text 04.07.2021
+
+mixin sub-title(allSubTitles)
+    .tutorial-title.tutorial-title__sub-title
+        +create-sub-title()
+        each subTitle in allSubTitles 
+            +edit-sub-title(subTitle.text, subTitle.link)
+
+block main
+    h1.u-margin-top-2.u-margin-bottom-2 Python Ders Başlıkları Tablosu
+
+    .tutorial-title.tutorial-title__main
+        +create-title()
+        each title in sidebar.linkGroup
+            +edit-title(title.title)
+            +sub-title(title.links)

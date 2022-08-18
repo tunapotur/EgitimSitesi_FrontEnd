@@ -1,0 +1,25 @@
+.overlay,
+.overlay-navbar {
+  display: none;
+  // display: block;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background: rgba(var(--RGB_color-white), 0.75) var(--background-pattern-diagonalLines);
+
+  $blur: 5px;
+  $brightness: 75%;
+  
+  @supports (backdrop-filter: blur($blur) brightness($brightness)) {
+    backdrop-filter: blur($blur) brightness($brightness);
+    background: rgba(var(--RGB_color-white), 0.5) var(--background-pattern-diagonalLines);
+  }
+}
+
+.overlay {
+  cursor: pointer;
+}

@@ -1,0 +1,44 @@
+.color-stop-1 {
+  stop-color: var(--blue-500);
+}
+.color-stop-2 {
+  stop-color: var(--green-600);
+}
+.color-stop-3 {
+  stop-color: var(--orange-600);
+}
+
+.brand {
+  display: flex;
+  align-items: flex-end;
+
+  flex-shrink: 0;
+
+  position: relative;
+
+  &__logo {
+    @include svg_block;
+    @include box(2.5rem);
+
+    margin-right: 0.2rem;
+
+    fill: var(--black-500);
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+    white-space: nowrap;
+    line-height: 1;
+
+    color: var(--orange-600);
+
+    // cursor: default;
+  }
+}

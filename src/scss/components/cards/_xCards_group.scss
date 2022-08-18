@@ -1,0 +1,227 @@
+.xCards-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+
+  margin-bottom: 2rem;
+
+  @include respond(phone) {
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  @include respond(phone-fold) {
+    margin-bottom: 4rem;
+  }
+
+  &__header {
+    font-weight: 700;
+    font-size: 3rem;
+    text-shadow: var(--bs-sm);
+    line-height: 1;
+    color: var(--orange-700);
+
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+    @include respond(phone) {
+      margin-left: 0;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+  }
+
+  &__window {
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    scroll-behavior: smooth;
+
+    @include respond(big-desktop) {
+      width: $xCard-total-width * 6;
+    }
+
+    width: $xCard-total-width * 5;
+
+    @include respond(tab-land) {
+      width: $xCard-total-width * 4;
+    }
+
+    @include respond(tab-port) {
+      width: $xCard-total-width-tab-port * 4;
+    }
+
+    @include respond(phone) {
+      width: $xCard-total-width-phone * 3;
+      overflow-x: scroll;
+    }
+
+    @include respond(phone-fold) {
+      width: $xCard-total-width-phone * 2;
+      overflow-x: scroll;
+    }
+  }
+
+  &__carousel {
+    display: flex;
+    padding: 1rem 0;
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+
+    cursor: pointer;
+
+    &--left {
+      left: -2rem;
+      &:active {
+        transform: translateX(-3%);
+      }
+    }
+
+    &--right {
+      right: -2rem;
+      &:active {
+        transform: translateX(3%);
+      }
+    }
+
+    border-radius: 0.5rem;
+    background-color: transparent;
+
+    width: 4.5rem;
+    height: 100%;
+
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: rgba(var(--RGB_black-075), 0.75);
+      box-shadow: var(--bs-sm);
+
+      .xCards-group__button-icon {
+        @include svg_color(rgba(var(--RGB_black-600), 1));
+      }
+    }
+  }
+
+  &__button-icon {
+    @include box(3rem);
+    @include svg_block;
+    @include svg_color(rgba(var(--RGB_black-600), 0.5));
+
+    @include respond(phone) {
+      @include box(2rem);
+    }
+  }
+
+  &__carousel-group-icons {
+    display: flex;
+    align-items: center;
+
+    position: absolute;
+    top: -1rem;
+    right: 1rem;
+
+    z-index: 1;
+
+    @include respond(phone) {
+      justify-content: center;
+      flex-wrap: wrap;
+
+      top: auto;
+      bottom: -2rem;
+      right: auto;
+
+      max-width: $xCard-total-width-phone * 3;
+    }
+
+    @include respond(phone-fold) {
+      max-width: $xCard-total-width-phone * 2;
+      bottom: -3.5rem;
+    }
+  }
+
+  &__carousel-group-icon {
+    cursor: pointer;
+
+    background-color: rgba(var(--RGB_black-400), 0.5);
+    border-radius: 0.5rem;
+    margin-left: 1px;
+
+    width: 3rem;
+    height: 0.6rem;
+
+    &:hover {
+      background-color: rgba(var(--RGB_black-600), 0.75);
+      transform: scaleY(1.2);
+    }
+
+    @include respond(phone) {
+      width: 3.2rem;
+      height: 1.6rem;
+
+      margin-right: 3px;
+      margin-top: 0.3rem;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      @include border-radius-height-ratio(1.5rem);
+
+      &:hover {
+        background-color: rgba(var(--RGB_black-400), 0.5);
+        transform: scaleY(1);
+      }
+    }
+
+    &--active {
+      background-color: rgba(var(--RGB_black-700), 1);
+      width: 3.4rem;
+      height: 0.8rem;
+      cursor: default;
+      pointer-events: none;
+
+      &:hover {
+        background-color: rgba(var(--RGB_black-700), 1);
+        transform: none;
+      }
+
+      @include respond(phone) {
+        width: 3.6rem;
+        height: 1.8rem;
+      }
+    }
+  }
+}
+
+/*
+    &:hover {
+      transform: scaleY(1.2);
+    }
+*/

@@ -1,0 +1,63 @@
+/*
+  .u-margin-top-0_5
+  .u-margin-top-1
+  .u-margin-left-1_5
+  .u-margin-right-2
+*/
+$directions: top, bottom, left, right;
+$sizes: '0.5', '1', '1.5', '2', '3';
+@each $direction in $directions {
+  @each $size in $sizes {
+    .u-margin-#{$direction}-#{str-replace($size,'.','_')} {
+      margin-#{$direction}: #{$size}rem !important;
+    }
+  }
+}
+
+/*
+  .u-padding-top-0_5
+  .u-padding-top-1
+  .u-padding-left-1_5
+  .u-padding-right-2
+*/
+@each $direction in $directions {
+  @each $size in $sizes {
+    .u-padding-#{$direction}-#{str-replace($size,'.','_')} {
+      padding-#{$direction}: #{$size}rem !important;
+    }
+  }
+}
+
+@for $i from 7 through 13 {
+  .u-z-index-#{$i*10} {
+    z-index: #{$i * 10} !important;
+  }
+}
+
+$displayText: none, block, flex;
+@each $text in $displayText {
+  .display-#{$text} {
+    display: #{$text} !important;
+  }
+}
+
+// prettier-ignore
+.box-shadow-none {box-shadow: none !important;}
+
+.noselect {
+  @include noselect;
+}
+
+.loader {
+  margin: 5rem auto;
+  text-align: center;
+
+  &__icon {
+    @include svg_color(var(--orange-300));
+    @include svg_block;
+    @include box(5.5rem);
+
+    transform-origin: 50% 50%;
+    animation: rotate 1.5s infinite linear;
+  }
+}

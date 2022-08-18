@@ -1,0 +1,15 @@
+.sidebar-wrapper {
+  display: none;
+
+  height: 100%;
+  width: $sidebar-width;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  box-shadow: var(--bs-sm);
+
+  background: var(--black-050);
+  background-image: url(url_string($bamboo, '9fa6ad', 0.2));
+}

@@ -1,0 +1,172 @@
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone-height {
+    @media only screen and (max-height: $bp-phone) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == phone-fold {
+    @media only screen and (max-width: $bp-phone-fold) {
+      @content;
+    } //300px
+  }
+  @if $breakpoint == phone {
+    @media only screen and (max-width: $bp-phone) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: $bp-tab-port) {
+      @content;
+    } //900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: $bp-tab-land) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: $bp-big-desktop) {
+      @content;
+    } //1800px
+  }
+}
+
+@mixin max-lines($lines: 3, $line-height: 1.6, $font-size: 1.6, $orient: vertical) {
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  -webkit-box-orient: $orient;
+  -webkit-line-clamp: $lines;
+  height: $font-size * $line-height * $lines; /* Fallback for non-webkit */
+
+  padding-bottom: 0.1rem;
+  font-size: #{$font-size}rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: $line-height;
+  white-space: normal;
+}
+
+@mixin width-text-ellipsis($max-width: 10rem) {
+  max-width: $max-width;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@mixin svg_color($color) {
+  fill: $color;
+  color: $color;
+}
+
+@mixin svg_block {
+  display: block;
+  flex-shrink: 0;
+}
+
+@mixin vertical-gaps-between-elements($size) {
+  & > * {
+    margin-bottom: $size;
+  }
+
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin generate_colors($colors) {
+  // Colors
+  @each $name, $value in $colors {
+    --#{$name}: #{$value};
+  }
+
+  // RGB Colors
+  @each $name, $value in $colors {
+    --RGB_#{$name}: #{hexToRGB($value)};
+  }
+}
+
+@mixin generate_colors_fixed($colors) {
+  // Colors
+  @each $name, $value in $colors {
+    --fixed_#{$name}: #{$value};
+  }
+
+  // RGB Colors
+  @each $name, $value in $colors {
+    --fixed_RGB_#{$name}: #{hexToRGB($value)};
+  }
+}
+
+@mixin border-radius-height-ratio($height, $ratio: 0.5) {
+  border-radius: $height * $ratio;
+}
+
+@mixin noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently */
+  /* supported by Chrome, Edge, Opera and Firefox */
+}
+
+@mixin aCard_polygon {
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 73%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 73%, 0% 100%);
+}
+
+// https://w3bits.com/sass-mixins/
+// 1-
+@mixin box($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// 2-
+@mixin clearfix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+// 11-
+@mixin font-face($font-name, $file-name, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: quote($font-name);
+    src: url($file-name + '.eot');
+    src: url($file-name + '.eot?#iefix') format('embedded-opentype'), url($file-name + '.woff') format('woff'),
+      url($file-name + '.ttf') format('truetype'), url($file-name + '.svg##{$font-name}') format('svg');
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+// @include font-face("MyFont", "path/to/MyFont", $style: normal, $weight: normal);
+
+// TODO: fontlar ile ilgili alttaki yazıları oku
+// https://fatihhayrioglu.com/font-face-kullanimi/
+// https://css-tricks.com/snippets/css/using-font-face/
+
+/*
+.font-face(@family, @path, @weight, @style) {
+    @font-face {
+        font-family: "@{family}";
+        font-style: @style;
+        font-weight: @weight;
+        & when (@style=italic) {
+            #stacks-internals #font-face-src(@family, @path, @weight, " Italic");
+        }
+        & when not (@style=italic) {
+            #stacks-internals #font-face-src(@family, @path, @weight, "");
+        }
+    }
+}
+*/

@@ -1,0 +1,45 @@
+mixin sidebarButton(id, text, info)
+    button.sb-button(id= id, type="button", data-tippy-content= info)
+        span.sb-button__overlay
+        span.sb-button__text= text
+
+.overlay.u-z-index-120(id="overlay")
+nav.sidebar-wrapper.u-z-index-130(id="sidebarWrapper")
+    //- data-simplebar simplebar sidebar scroll bar icin
+    .sidebar
+        .sidebar__btn(id='toggleSidebar')
+            svg.sidebar__icon
+                use(xlink:href='img/svg/icons.svg#angle-double-right')
+        .scroll-top-btn.scroll-top-btn--absolute.u-z-index-70(id="sidebar-scroll-top-btn")
+            svg.scroll-top-btn__icon
+                use(xlink:href='img/svg/icons.svg#arrow-up')
+        .sidebar__head
+            .sidebar__title
+                a.sb-title__link(href=`${sidebar.title.link}`)
+                    h1.sb-title__text= sidebar.title.text
+            .sidebar__link-search
+                form.sb-link-search__form(action="" autocomplete="off")
+                    input.sb-link-search__input(type='text' name='search' placeholder=`${sidebar.linkSearchPlaceholder}` id='sidebar-link-search')
+            .sidebar__buttons
+                +sidebarButton('open-all-sidebar-links', sidebar.sidebarButtons.openAllSidebarLinks.label, sidebar.sidebarButtons.openAllSidebarLinks.info)
+                +sidebarButton('close-all-sidebar-links', sidebar.sidebarButtons.closeAllSidebarLinks.label, sidebar.sidebarButtons.closeAllSidebarLinks.info)
+                +sidebarButton('default-sidebar-links', sidebar.sidebarButtons.defaultSidebarLinks.label, sidebar.sidebarButtons.defaultSidebarLinks.info)
+                +sidebarButton('edit-sidebar-links', sidebar.sidebarButtons.editSidebarLinks.label, sidebar.sidebarButtons.editSidebarLinks.info)
+        ul.sidebar__links(id='sidebarLinks' data-simplebar)
+            each links in sidebar.linkGroup
+                //- alt başlığı olmayan başlık sidebar üzerinde oluşturulmuyor
+                if links.links.length
+                    li.sb-links-group
+                        .sb-links-group__title
+                            svg.sb-links-group__icon
+                                use(xlink:href='img/svg/icons.svg#angle-right')
+                            span.sb-links-group__text= links.title
+                        ul.sb-links-group__links
+                            each link in links.links
+                                li.sb-link
+                                    a.sb-link__href(href=`${link.link}`)
+                                        svg.sb-link__icon
+                                            use(xlink:href='img/svg/icons.svg#circle-o')
+                                        svg.sb-link__icon.sb-link__icon--filled
+                                            use(xlink:href='img/svg/icons.svg#circle')
+                                        span.sb-link__text=link.text

@@ -1,0 +1,366 @@
+.tutorial-title {
+  $iconSize: 3rem;
+  $iconSize-phone: 4rem;
+
+  @mixin rsIconBox($iconSize: $iconSize, $iconSize-phone: $iconSize-phone) {
+    @include box($iconSize);
+    @include respond(phone) {
+      @include box($iconSize-phone);
+    }
+  }
+
+  display: flex;
+  flex-direction: column;
+
+  &__main {
+    border: 1px solid var(--black-100);
+    @include respond(phone) {
+      width: 85vw;
+    }
+  }
+
+  &__responsive-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    width: 24rem;
+    height: 6rem;
+
+    @include respond(phone) {
+      justify-content: space-around;
+
+      height: 5rem;
+      width: 100%;
+    }
+
+    &:nth-child(3) {
+      margin-left: 1rem;
+      @include respond(phone) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  &__create-title,
+  &__edit-title,
+  &__create-sub-title,
+  &__edit-sub-title {
+    display: flex;
+    align-items: center;
+
+    @include respond(phone) {
+      flex-direction: column;
+      padding: 1rem;
+    }
+
+    .frmGroup {
+      &__input {
+        border: 1px solid var(--black-100);
+        background-color: var(--color-white);
+      }
+
+      &__select {
+        border: 1px solid var(--black-100);
+        background-color: var(--color-white);
+      }
+    }
+  }
+
+  &__create-title,
+  &__create-sub-title {
+    background-color: var(--green-050);
+
+    .tutorial-title__icon {
+      @include svg_color(var(--black-700));
+    }
+  }
+
+  &__create-title {
+    .tutorial-title__responsive-wrapper {
+      &:nth-child(1) {
+        @include respond(phone) {
+          sort: 1;
+        }
+      }
+
+      &:nth-child(2) {
+        @include respond(phone) {
+          sort: 2;
+        }
+      }
+
+      &:nth-child(3) {
+        @include respond(phone) {
+          sort: 3;
+        }
+      }
+
+      &:nth-child(4) {
+        @include respond(phone) {
+          sort: 0;
+        }
+      }
+
+      & > .tutorial-title__icon {
+        @include rsIconBox(2.8rem, 3.5rem);
+      }
+    }
+  }
+
+  &__edit-title {
+    background-color: var(--powder-050);
+    border-top: 1px solid var(--black-100);
+  }
+
+  &__edit-sub-title {
+    border-top: 1px dashed var(--black-100);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 24rem;
+
+    color: var(--black-600);
+    font-family: $bs-font-sans-serif;
+    font-size: 2.2rem;
+    line-height: 1;
+    font-weight: 700;
+
+    &--orange {
+      color: var(--orange-800);
+      font-style: italic;
+      text-shadow: var(--bs-sm);
+    }
+  }
+
+  .frmGroup {
+    &__input {
+      width: 24rem;
+      height: 4rem;
+      @include respond(phone) {
+        width: 100%;
+      }
+    }
+
+    &__select-wrapper {
+      width: 15rem;
+      @include respond(phone) {
+        width: 100%;
+      }
+    }
+
+    &__select {
+      height: 4rem;
+    }
+  }
+
+  &__icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 9rem;
+  }
+
+  &__icon {
+    cursor: pointer;
+
+    @include svg_color(var(--black-600));
+    @include svg_block;
+    @include noselect;
+
+    @include rsIconBox;
+
+    transition: transform 100ms ease-in-out;
+
+    &:hover {
+      @include svg_color(var(--black-800));
+      stroke: var(--black-800);
+
+      @include respond(phone) {
+        @include svg_color(var(--black-600));
+        stroke: none;
+      }
+    }
+
+    &:active {
+      stroke: none;
+      transform: translate(0, 2.5%);
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 9rem;
+  }
+
+  &__info-header,
+  &__info-text {
+    color: var(--fc-medium);
+    font-family: $bs-font-sans-serif;
+    line-height: 1;
+  }
+
+  &__info-header {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  &__info-text {
+    font-size: 1.4rem;
+  }
+
+  &__sub-title {
+    display: none;
+    border-top: 1px solid var(--black-100);
+  }
+
+  &__create-sub-title {
+    background-color: transparent;
+  }
+
+  &__sub-header {
+    font-size: 1.8rem;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--black-600);
+  }
+
+  .rowPositionMenu {
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    @include noselect;
+
+    &__manage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include rsIconBox;
+
+      position: relative;
+
+      cursor: pointer;
+    }
+
+    &__icon {
+      position: absolute;
+
+      transition: background-color 150ms ease-in-out;
+      &:hover {
+        @include svg_color(var(--black-800));
+      }
+
+      transform: rotate(0) scale(1);
+      opacity: 1;
+      &--hide {
+        transform: rotate(360deg) scale(0);
+        opacity: 0;
+      }
+    }
+
+    &__carry {
+      cursor: grab;
+      &:active {
+        cursor: grabbing;
+      }
+
+      @include respond(phone) {
+        // sort: 0;
+        sort: 0;
+      }
+    }
+
+    &__move-up-one {
+      @include respond(phone) {
+        // sort: 1;
+        sort: 1;
+      }
+    }
+
+    &__move-down-one {
+      @include respond(phone) {
+        // sort: 2;
+        sort: 4;
+      }
+    }
+
+    &__move-top {
+      @include respond(phone) {
+        // sort: 3;
+        sort: 2;
+      }
+    }
+
+    &__move-bottom {
+      @include respond(phone) {
+        // sort: 4;
+        sort: 4;
+      }
+    }
+
+    &__send {
+      @include respond(phone) {
+        // sort: 5;
+        sort: 3;
+      }
+    }
+
+    &__list {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1rem;
+
+      /* //* bu ikisi yerine place-item kullanılabilir
+      justify-items: center;
+      align-items: center;
+      */
+      place-items: center;
+
+      padding: 1rem;
+
+      // iconsize + (gap) + (paddign)
+      width: 6 * $iconSize + 5 * 1rem + 2 * 1rem;
+
+      position: absolute;
+      left: 4rem;
+      z-index: 1;
+
+      /* //*javascript ile sayfa açılışında eklenecek
+      transition-duration: 0.3s;
+      transition-timing-function: cubic-bezier(0.8, 0, 0.07, 1);
+      transition-property: width, grid-gap, padding;
+      */
+
+      background-color: var(--green-050);
+      border-radius: 0.5rem;
+
+      box-shadow: var(--bs-md);
+
+      @include respond(phone) {
+        width: 3 * $iconSize-phone + 2 * 1rem + 2 * 1rem;
+        grid-template-columns: repeat(3, 1fr);
+
+        left: 5rem;
+        top: -1rem;
+      }
+
+      &--hide {
+        width: 0;
+        padding: 0;
+        grid-gap: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+// https://www.techhive.io/our-insights/how-to-use-css-variables-with-sass-mixins
+@function hexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
+//  Helper function to replace characters in a string
+// https://css-tricks.com/snippets/sass/str-replace-function/
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+@function url_string($svg, $color: 000000, $opacity: 0.5) {
+  $svg: str-replace($svg, "fill='%23000000'", "fill='%23#{$color}'");
+  $svg: str-replace($svg, "fill-opacity='0.4'", "fill-opacity='#{$opacity}'");
+  @return $svg;
+}

@@ -1,0 +1,29 @@
+.page-wrapper {
+  margin-left: 0;
+
+  display: block;
+
+  &__has-sidebar {
+    .sidebar-wrapper {
+      display: block;
+    }
+
+    .content-wrapper {
+      margin-left: $sidebar-width;
+
+      @include respond(tab-port) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  &--sidebar-closed {
+    .sidebar-wrapper {
+      margin-left: -$sidebar-width;
+    }
+
+    .content-wrapper {
+      margin-left: 0;
+    }
+  }
+}

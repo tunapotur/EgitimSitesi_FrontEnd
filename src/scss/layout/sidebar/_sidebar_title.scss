@@ -1,0 +1,36 @@
+.sidebar__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: $navbar-height;
+
+  background-color: rgba(var(--RGB_black-150), 0.3);
+
+  .sb-title {
+    // &__link {}
+
+    &__text {
+      padding: 0 0.5rem;
+
+      font-size: 2rem;
+      text-align: center;
+      line-height: 1;
+
+      background: linear-gradient(
+        var(--topLight-to-bottomDark-deg),
+        var(--orange-300) 10%,
+        var(--orange-400) 50%,
+        var(--orange-700) 75%,
+        var(--orange-800) 80%
+      );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      text-shadow: var(--bs-sm);
+      text-transform: capitalize;
+    }
+  }
+}

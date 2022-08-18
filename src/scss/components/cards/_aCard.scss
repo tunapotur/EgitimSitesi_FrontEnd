@@ -1,0 +1,82 @@
+.aCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-left: $xCard-margin-left;
+  margin-right: $xCard-margin-right;
+
+  width: $aCard-width;
+  height: 45rem;
+
+  background-color: var(--black-050);
+  transition: transform 0.5s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &__image-wrapper {
+    position: relative;
+
+    width: 100%;
+    height: 20rem;
+  }
+
+  &__image-top {
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+    @include aCard_polygon;
+  }
+
+  &__profile-image {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+
+    width: 12rem;
+    height: 12rem;
+
+    object-fit: cover;
+
+    z-index: 10;
+
+    border-radius: 50%;
+
+    border: 1rem solid var(--black-050);
+
+    // margin-top: -11rem;
+  }
+
+  &__fullname {
+    font-size: 2rem;
+    color: var(--black-500);
+    @include max-lines(2, 1.1, 2);
+    text-align: center;
+
+    margin: 0 1rem;
+  }
+
+  &__job {
+    color: var(--black-600);
+    font-weight: 300;
+    @include max-lines(2, 1.2, 2);
+    text-align: center;
+
+    margin: 1rem 1rem;
+  }
+
+  &__about-me {
+    font-family: 'Josefin Sans', sans-serif;
+    @include max-lines(6, 1.5, 1.4);
+    text-align: left;
+    font-style: italic;
+    color: var(--black-500);
+
+    margin: 0 1.5rem 1rem 1.5rem;
+  }
+}

@@ -1,0 +1,15 @@
+@mixin form-width {
+  width: $frmGroup-config-wrapper;
+  @include respond(phone) {
+    width: $frmGroup-config-wrapper-phone;
+  }
+}
+
+.frmPage-wrapper {
+  display: flex;
+  @include respond(phone) {
+    flex-direction: column;
+  }
+
+  position: relative;
+}

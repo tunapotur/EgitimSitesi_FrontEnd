@@ -1,0 +1,55 @@
+.main-search {
+  flex-grow: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 1rem;
+
+  @include respond(tab-land) {
+    margin-left: 0.5rem;
+    margin-right: 1rem;
+  }
+
+  @include respond(phone) {
+    display: none;
+  }
+
+  position: relative;
+
+  &__input {
+    flex-grow: 1;
+
+    height: 3.5rem;
+    width: 5rem;
+    @include border-radius-height-ratio(3.5rem);
+
+    padding-left: 2rem;
+    padding-right: 4rem;
+
+    background-color: var(--black-050);
+    color: var(--fc-medium);
+
+    cursor: text;
+
+    border: none;
+    outline: none;
+
+    transition: box-shadow 200ms ease-in-out;
+
+    &:focus {
+      box-shadow: 0 0 2px 3px rgba(var(--RGB_color-orange), 0.5);
+    }
+  }
+
+  &__icon {
+    display: block;
+
+    position: absolute;
+    right: 1.5rem;
+
+    @include svg_color(var(--color-orange));
+    @include box(1.5rem);
+  }
+}

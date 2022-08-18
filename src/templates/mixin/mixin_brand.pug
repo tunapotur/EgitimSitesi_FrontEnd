@@ -1,0 +1,12 @@
+mixin brand(id)
+    a.brand(href="index.html")
+        svg.brand__logo
+            defs
+                linearGradient(id=`${id}`)
+                    stop(offset="0%" class="color-stop-1")
+                    stop(offset="50%" class="color-stop-2")
+                    stop(offset="100%" class="color-stop-3")
+            use(xlink:href="img/svg/icons.svg#brand" fill=`url(#${id})`)
+        .brand__text
+            p #{navbar.brand[0]}
+            p #{navbar.brand[1]}

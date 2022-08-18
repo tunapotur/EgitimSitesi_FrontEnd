@@ -1,0 +1,532 @@
+.grTable {
+  display: grid;
+
+  font-size: 1.4rem;
+
+  margin-top: 2rem;
+
+  @include respond(phone) {
+    gap: 1.5rem;
+    font-size: 1.6rem;
+  }
+
+  &__multi-text {
+    display: block;
+    font-size: 1.2rem;
+  }
+
+  &__link {
+    cursor: pointer;
+
+    text-decoration: underline;
+    text-decoration-color: transparent;
+
+    transition: text-decoration-color 250ms ease-in-out;
+
+    &:hover {
+      text-decoration-color: var(--fc-medium);
+
+      @include respond(phone) {
+        text-decoration-color: transparent;
+      }
+    }
+  }
+
+  &__title-edit {
+    border: 2px solid var(--black-200);
+    background-color: var(--color-white);
+    height: 100%;
+    width: 100%;
+
+    resize: none;
+
+    padding: 0.25rem 0.5rem;
+
+    font-size: 1.4rem;
+
+    color: var(--fc-medium);
+    font-family: $font-primary;
+    line-height: 1.2;
+    font-weight: 400;
+
+    outline: none;
+
+    transition: border 200ms ease-in-out;
+    &:focus {
+      border: 2px solid rgba(var(--RGB_color-orange), 0.5);
+    }
+
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &::placeholder {
+      color: var(--black-200);
+      font-size: 1.4rem;
+      font-weight: 300;
+    }
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(4, 6.5rem) auto repeat(2, 6.5rem) repeat(2, 8rem);
+    grid-template-rows: 4rem;
+
+    &:nth-child(odd) {
+      background-color: var(--powder-050);
+    }
+
+    @include respond(tab-port) {
+      grid-template-columns: repeat(4, 6rem) auto repeat(2, 6rem) repeat(2, 8rem);
+    }
+
+    @include respond(phone) {
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(3, 6rem);
+      align-items: stretch;
+      justify-content: center;
+
+      // box-shadow: var(--bs-sm);
+
+      &:nth-child(odd) {
+        background-color: transparent;
+      }
+    }
+
+    &--head {
+      @include respond(phone) {
+        display: none;
+      }
+
+      .grTable__cell {
+        background-color: var(--green-050);
+        color: var(--black-600);
+        font-size: 1.25rem;
+        line-height: 1.2;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    &[data-th] {
+      &::before {
+        display: none;
+      }
+
+      @include respond(phone) {
+        &::before {
+          display: block;
+          content: attr(data-th);
+
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  &__image {
+    display: none;
+  }
+
+  &__content-editor,
+  &__select {
+    @include respond(phone) {
+      grid-row: 1 / span 1;
+      grid-column: 7 / span 2;
+    }
+  }
+
+  &__edit,
+  &__save-close-edit {
+    @include respond(phone) {
+      grid-row: 2 / span 1;
+      grid-column: 7 / span 2;
+    }
+  }
+
+  &__content-files,
+  &__delete {
+    @include respond(phone) {
+      grid-row: 3 / span 1;
+      grid-column: 7 / span 2;
+    }
+  }
+
+  &__id {
+    @include respond(phone) {
+      grid-row: 2 / span 1;
+      grid-column: span 2;
+    }
+  }
+
+  &__title {
+    align-items: flex-start;
+    white-space: nowrap;
+
+    padding-left: 1rem;
+
+    &[data-th]::before {
+      display: none;
+    }
+
+    @include respond(phone) {
+      grid-row: 1 / span 1;
+      grid-column: 1 / span 6;
+
+      padding-top: 0.5rem;
+
+      @include max-lines(2, 1.3, 2);
+      font-weight: 600;
+      color: var(--orange-700);
+    }
+
+    &--edit {
+      padding: 0;
+    }
+  }
+
+  &__type {
+    @include respond(phone) {
+      grid-row: 2 / span 1;
+      grid-column: span 2;
+    }
+  }
+
+  &__status,
+  &__size {
+    @include respond(phone) {
+      grid-row: 2 / span 1;
+      grid-column: span 2;
+    }
+  }
+
+  &__created {
+    @include respond(phone) {
+      grid-row: 3 / span 1;
+      grid-column: span 3;
+    }
+  }
+
+  &__updated {
+    @include respond(phone) {
+      grid-row: 3 / span 1;
+      grid-column: span 3;
+    }
+  }
+
+  //* Border Config
+  &__row {
+    border-top: 1px solid $grTable-border-color;
+    border-left: 1px solid $grTable-border-color;
+    border-right: 1px solid $grTable-border-color;
+
+    &:last-child {
+      border-bottom: 1px solid $grTable-border-color;
+    }
+
+    @include respond(phone) {
+      border-bottom: 1px solid $grTable-border-color;
+      border-radius: 1rem;
+    }
+  }
+
+  &__cell {
+    border-right: 1px solid $grTable-border-color;
+
+    &:last-child {
+      border-right: none;
+      @include respond(phone) {
+        border-right: 1px solid $grTable-border-color;
+      }
+    }
+  }
+
+  &__content-editor,
+  &__select {
+    @include respond(phone) {
+      border-right: none;
+      border-bottom: 1px solid $grTable-border-color;
+    }
+  }
+
+  &__edit,
+  &__save-close-edit {
+    @include respond(phone) {
+      border-right: none;
+      border-bottom: 1px solid $grTable-border-color;
+    }
+  }
+
+  &__content-files,
+  &__delete {
+    @include respond(phone) {
+      border-right: none;
+    }
+  }
+
+  &__title {
+    @include respond(phone) {
+      border-bottom: 1px solid $grTable-border-color;
+    }
+  }
+
+  &__id {
+    @include respond(phone) {
+      border-bottom: 1px solid $grTable-border-color;
+    }
+  }
+
+  &__type {
+    @include respond(phone) {
+      border-bottom: 1px solid $grTable-border-color;
+    }
+  }
+
+  &__status,
+  &__size {
+    @include respond(phone) {
+      border-bottom: 1px solid $grTable-border-color;
+    }
+  }
+
+  &__created {
+    @include respond(phone) {
+    }
+  }
+
+  &__updated {
+    @include respond(phone) {
+    }
+  }
+  //* Border Config End
+
+  &--card {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 1.5rem;
+    column-gap: 1.5rem;
+
+    @include respond(phone) {
+      grid-template-columns: 1fr;
+    }
+
+    .grTable {
+      &__link:hover {
+        text-decoration-color: var(--orange-700);
+      }
+
+      &__row {
+        grid-template-columns: 16rem repeat(8, 1fr);
+        grid-template-rows: repeat(3, 5rem);
+        align-items: stretch;
+        justify-content: center;
+
+        box-shadow: var(--bs-sm);
+
+        font-size: 1.5rem;
+        line-height: 1.3;
+
+        @include respond(tab-port) {
+          font-size: 1.4rem;
+        }
+
+        @include respond(phone) {
+          grid-template-columns: 15rem repeat(8, 1fr);
+          font-size: 1.2rem;
+        }
+
+        @include respond(phone-fold) {
+          grid-template-columns: 12rem repeat(8, 1fr);
+          font-size: 1.1rem;
+        }
+
+        @include respond(big-desktop) {
+          grid-template-columns: 16rem repeat(8, 1fr);
+          font-size: 1.3rem;
+        }
+
+        &:nth-child(odd) {
+          background-color: transparent;
+        }
+
+        &--head {
+          display: none;
+        }
+      }
+
+      &__cell {
+        &[data-th] {
+          &::before {
+            display: block;
+            content: attr(data-th);
+
+            font-weight: 500;
+          }
+        }
+      }
+
+      &__image {
+        display: block;
+
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 3;
+
+        .thumbnail {
+          &__image {
+            display: block;
+
+            width: 16rem;
+            height: 15rem;
+
+            object-fit: cover;
+            // object-fit: contain;
+            // object-fit: scale-down;
+
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+
+            @include respond(phone-fold) {
+              width: 12rem;
+            }
+
+            @include respond(phone) {
+              width: 15rem;
+            }
+
+            @include respond(big-desktop) {
+              width: 16rem;
+            }
+          }
+        }
+      }
+
+      &__content-editor,
+      &__select {
+        grid-row: 1 / span 1;
+        grid-column: 8 / span 2;
+      }
+
+      &__edit,
+      &__save-close-edit {
+        grid-row: 2 / span 1;
+        grid-column: 8 / span 2;
+      }
+
+      &__content-files,
+      &__delete {
+        grid-row: 3 / span 1;
+        grid-column: 8 / span 2;
+      }
+
+      &__id {
+        grid-row: 2 / span 1;
+        grid-column: span 2;
+      }
+
+      &__title {
+        grid-row: 1 / span 1;
+        grid-column: 2 / span 6;
+
+        &[data-th]::before {
+          display: none;
+        }
+
+        padding-top: 0.5rem;
+
+        @include max-lines(2, 1.2, 1.8);
+        font-weight: 600;
+        color: var(--orange-700);
+
+        &--edit {
+          padding: 0;
+        }
+      }
+
+      &__type {
+        grid-row: 2 / span 1;
+        grid-column: span 2;
+      }
+
+      &__status,
+      &__size {
+        grid-row: 2 / span 1;
+        grid-column: span 2;
+      }
+
+      &__created {
+        grid-row: 3 / span 1;
+        grid-column: span 3;
+      }
+
+      &__updated {
+        grid-row: 3 / span 1;
+        grid-column: span 3;
+      }
+
+      //* Border Config
+      &__row {
+        border-top: 1px solid $grTable-border-color;
+        border-left: 1px solid $grTable-border-color;
+        border-right: 1px solid $grTable-border-color;
+        border-bottom: 1px solid $grTable-border-color;
+        border-radius: 1rem;
+      }
+
+      &__cell {
+        border-right: 1px solid $grTable-border-color;
+      }
+
+      &__content-editor,
+      &__select {
+        border-right: none;
+        border-bottom: 1px solid $grTable-border-color;
+      }
+
+      &__edit,
+      &__save-close-edit {
+        border-right: none;
+        border-bottom: 1px solid $grTable-border-color;
+      }
+
+      &__content-files,
+      &__delete {
+        border-right: none;
+      }
+
+      &__title {
+        border-bottom: 1px solid $grTable-border-color;
+      }
+
+      &__id {
+        border-bottom: 1px solid $grTable-border-color;
+      }
+
+      &__type {
+        border-bottom: 1px solid $grTable-border-color;
+      }
+
+      &__status,
+      &__size {
+        border-bottom: 1px solid $grTable-border-color;
+      }
+      //* Border Config End
+    }
+  }
+
+  &--sub-table {
+    .grTable {
+      &__row {
+        grid-template-columns: repeat(4, 6.5rem) auto repeat(3, 8rem);
+        grid-template-rows: 5rem;
+      }
+    }
+  }
+}

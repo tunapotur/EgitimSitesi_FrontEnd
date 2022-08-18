@@ -1,0 +1,32 @@
+extends base/base.pug
+
+block main
+    each cardsGroup in cards
+        .xCards-group
+            h1.xCards-group__header
+                a(href= cardsGroup.header.link)= cardsGroup.header.text
+            .xCards-group__wrapper
+                .xCards-group__window.u-z-index-70
+                    ul.xCards-group__carousel
+                        each card in cardsGroup.cards
+                            li
+                                a.xCard.u-z-index-80(href=`${card.link}`)
+                                    .xCard__header-wrapper
+                                        img.xCard__img(src=`${card.imgLink}` ald=`${card.imgAlt}`)
+                                        .xCard__header-overlay.stripped
+                                        .xCard__header-user-name
+                                            h1.xCard__header= card.header
+                                            p.xCard__user-name= card.userName
+                                    p.xCard__text= card.text
+                .xCards-group__buttons
+                    .xCards-group__button.xCards-group__button--left.noselect.u-z-index-90
+                        svg.xCards-group__button-icon
+                            use(xlink:href='img/svg/icons.svg#chevron-left')
+                    .xCards-group__button.xCards-group__button--right.noselect.u-z-index-90
+                        svg.xCards-group__button-icon
+                            use(xlink:href='img/svg/icons.svg#chevron-right')
+                ul.xCards-group__carousel-group-icons
+                    //- li.xCards-group__carousel-group-icon
+                    //- li.xCards-group__carousel-group-icon.xCards-group__carousel-group-icon--active
+                    //- li.xCards-group__carousel-group-icon
+                    //- li.xCards-group__carousel-group-icon

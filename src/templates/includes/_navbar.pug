@@ -1,0 +1,118 @@
+include ../mixin/mixin_brand.pug
+include ../mixin/mixin_user_link.pug
+
+.overlay-navbar.u-z-index-90(id="overlayNavbar")
+nav.navbar-wrapper.u-z-index-110(id="navbarWrapper")
+    .navbar-responsive
+        .navbar-responsive__button(id="responsiveNavbarOpen")
+            .navbar-responsive__icons
+                svg.navbar-responsive__icon
+                    use(xlink:href='img/svg/icons.svg#bars')
+                svg.navbar-responsive__icon.navbar-responsive__icon--hide
+                    use(xlink:href='img/svg/icons.svg#close')
+
+        +brand('brand-navbar-responsive')
+
+        .navbar-responsive__button(id="responsiveNavbarSearch")
+            .navbar-responsive__icons
+                svg.navbar-responsive__icon
+                    use(xlink:href='img/svg/icons.svg#search')
+                svg.navbar-responsive__icon.navbar-responsive__icon--hide
+                    use(xlink:href='img/svg/icons.svg#close')
+            form.navbar-responsive__search(action="" autocomplete="on")
+                input(type='text' name='search'  placeholder=`${navbar.searchPlaceholder}`)
+
+    .navbar(id="navbar")
+        +brand('brand-navbar-top')
+
+        form.main-search(action="" autocomplete="on")
+            input.main-search__input(type='text', name='search',placeholder=`${navbar.searchPlaceholder}`)
+            svg.main-search__icon(id="main-search-icon")
+                use(xlink:href="img/svg/bootstrap-icons.svg#search")
+
+        ul.nav-links
+            each val in navbar.links
+                li
+                    if val.disabled
+                        a.nav-link.nav-link--disabled(href=`${val.link}`)
+                            span.nav-link__text= val.text
+                    else
+                        a.nav-link(href=`${val.link}`)
+                            span.nav-link__text= val.text
+
+        .nav-icons
+            div(id='fullScreen')
+                svg.nav-icons__icon
+                    use(xlink:href="img/svg/bootstrap-icons.svg#fullscreen")
+                svg.nav-icons__icon.nav-icons__icon--none
+                    use(xlink:href="img/svg/bootstrap-icons.svg#fullscreen-exit")
+            div(id='fixNavbar')
+                svg.nav-icons__icon
+                    use(xlink:href="img/svg/icons.svg#pin")
+                svg.nav-icons__icon
+                    use(xlink:href="img/svg/icons.svg#unpin")
+            div(id="darkLight")
+                svg.nav-icons__icon
+                    use(xlink:href="img/svg/bootstrap-icons.svg#square-half")
+
+        .user-menu-wrapper(id='userMenuWrapper')
+            .user-btn
+                .user-btn__icon
+                    //- kullanıcı çıkış yaptıysa ve bildirim yoksa notice silinecek
+                    svg.user-btn__notice
+                        use(xlink:href='img/svg/icons.svg#circle')
+                    svg.user-btn__figure
+                        use(xlink:href='img/svg/icons.svg#user-regular')
+
+                .user-btn__text
+                    .user-btn__label #{navbar.user.btnLabel}
+                    .user-btn__name #{navbar.user.fullName}
+                    //- eğer kullanıcı çıkış yaptıysa alttakiler yazacak
+                    //- .user__label Giriş Yap
+                    //- .user__name veya Üye Ol
+
+                svg.user-btn__menu-pointer
+                    use(xlink:href='img/svg/bootstrap-icons.svg#chevron-down')
+
+            .user-menu.user-menu--animation(id='userMenu')
+                a.user-menu__info.user-menu--animation-rotate-x-1(href=`${navbar.user.config.link}`)
+                    img.user-menu__photo(src='img/user.jpg' alt='User Photo')
+                    .user-menu__text
+                        .user-menu__name #{navbar.user.fullName}
+                        .user-menu__email #{navbar.user.email}
+                ul.user-menu__links.user-menu--animation-rotate-x-2
+                    h6.user-menu__links-header #{navbar.user.content.header}
+                    li
+                        a.user-menu__link.user-menu__link--orange(href=`${navbar.user.content.links[0].link}`)
+                            span.user-menu__link-text= navbar.user.content.links[0].text
+                            svg.user-menu__link-icon
+                                use(xlink:href='img/svg/bootstrap-icons.svg#file-earmark-plus')
+                                //- use(xlink:href='img/svg/bootstrap-icons.svg#file-earmark-text')
+                    +user_link(navbar.user.content.links[1].text, navbar.user.content.links[1].link)
+                    +user_link(navbar.user.content.links[2].text, navbar.user.content.links[2].link)
+                    +user_link(navbar.user.content.links[3].text, navbar.user.content.links[3].link)
+                    +user_link(navbar.user.content.links[4].text, navbar.user.content.links[4].link, navbar.user.content.links[4].disabled)
+
+                ul.user-menu__links.user-menu--animation-rotate-x-3
+                    h6.user-menu__links-header #{navbar.user.follow.header}
+                    each val in navbar.user.follow.links 
+                        +user_link(val.text, val.link, val.disabled)
+
+                ul.user-menu__links.user-menu--animation-rotate-x-4
+                    +user_link(navbar.user.notification.text, navbar.user.notification.link, navbar.user.notification.disabled)
+                        span.user-menu__link-count #{navbar.user.notification.count}
+                    +user_link(navbar.user.message.text, navbar.user.message.link, navbar.user.notification.disabled)
+                        span.user-menu__link-count #{navbar.user.message.count}
+
+                ul.user-menu__links.user-menu--animation-rotate-x-5
+                    +user_link(navbar.user.help.text, navbar.user.help.link,navbar.user.help.disabled)
+                        svg.user-menu__link-icon
+                            use(xlink:href='img/svg/bootstrap-icons.svg#question-circle-fill')
+
+                ul.user-menu__links.user-menu--animation-rotate-x-6
+                    +user_link(navbar.user.config.text, navbar.user.config.link)
+                        svg.user-menu__link-icon
+                            use(xlink:href='img/svg/icons.svg#cog')
+                    +user_link(navbar.user.signOut.text, navbar.user.signOut.link)
+                        svg.user-menu__link-icon
+                            use(xlink:href='img/svg/icons.svg#sign-out')

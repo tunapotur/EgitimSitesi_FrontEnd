@@ -1,0 +1,54 @@
+.checkbox2 {
+  user-select: none;
+
+  border-radius: $frmGroup-border-radius;
+
+  &__input {
+    display: none;
+
+    // Checked olduğunda label altında ki
+    &:checked ~ .checkbox2__label {
+      // icon görünür olacak
+      .checkbox2__svg {
+        opacity: 1;
+      }
+
+      // icon arka fonu mavi olacak
+      .checkbox2__icon {
+        background-color: var(--blue-600);
+      }
+    }
+  }
+
+  &__label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid var(--black-600);
+    border-radius: $frmGroup-checkbox-border-radius;
+
+    padding: 0.3rem;
+  }
+
+  &__svg {
+    opacity: 0;
+    transition: opacity 250ms;
+    @include svg_color(var(--black-025));
+    @include svg_block;
+    @include box(1.5rem);
+    @include respond(phone) {
+      @include box(1.2rem);
+    }
+  }
+}
